@@ -14,27 +14,19 @@ int main() {
 		cin >> sequence[i];
 	}
 
-	int min(sequence[0]);
-	int max(sequence[0]);
-	int maxIndex = 0;
-	int minIndex = 0;
+	int countLocalMax = 0;
+	int countLocalMin = 0;
 
-	for(int i = 0; i < size; ++i) {				// Swap Maximum and Minimum Elements
-		if(sequence[i] > max) {
-			max = sequence[i];
-			maxIndex = i;
+	for(int i = 1; i < size - 1; ++i) {
+		if(sequence[i] > sequence[i - 1] && sequence[i] > sequence[i + 1]) {						// Count Local Minima and Maxima
+			countLocalMax++;
 		}
-		if(sequence[i] < min) {
-			min = sequence[i];
-			minIndex = i;
+		if(sequence[i] < sequence[i - 1] && sequence[i] < sequence[i + 1]) {
+			countLocalMin++;
 		}
 	}
-	sequence[maxIndex] = min;
-	sequence[minIndex] = max;
 
-	for(int i = 0; i < size; ++i) {
-		cout << sequence[i] << " ";
-	}
+	cout << "Local Minima: " << countLocalMin << endl << "Local Maxima: " << countLocalMax << endl;
 
 
 	return 0;
