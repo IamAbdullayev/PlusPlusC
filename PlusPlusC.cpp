@@ -14,16 +14,19 @@ int main() {
 		cin >> sequence[i];
 	}
 
-	int counter = 0;
+	int min(sequence[0]), 
+			max(sequence[0]);
 
-	for(int i = 0; i < size; ++i) {
-		if(((i + 2) % 2 == 0) && (sequence[i] % 2 == 0)) {  	  // Even Numbers in Even Places Counter
-			counter++;
+	for(int i = 0; i < size; ++i) {				// Sequence Minimum and Maximum Value Finder
+		if(sequence[i] > max) {
+			max = sequence[i];
+		}
+		if(sequence[i] < min) {
+			min = sequence[i];
 		}
 	}
 
-	cout << counter << endl;
-
+	cout << "minimum = " << min << ", " << "maximum = " << max << endl;
 
 	return 0;
 
