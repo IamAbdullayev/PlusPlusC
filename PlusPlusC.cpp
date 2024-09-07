@@ -8,29 +8,31 @@ int main() {
 
 	int size;
 	cin >> size;
+	
 	int sequence[size];
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
 	
-	bool isAscending = true;
-	bool isDescending = true;
+	int number;
+	cin >> number;
 	
-	for(int i = 1; i < size; ++i) {
-		if(sequence[i] > sequence[i - 1]) {
-			isDescending = false;
-		} else if(sequence[i] < sequence[i - 1]) {				// Sequence Order Checker
-			isAscending = false;
+	int numberIndex = 0;
+	
+	for(int i = 0; i < size; ++i) {                    // Last Occurrence Index Finder
+			
+		if(sequence[i] == number) {
+			numberIndex = i;
 		}
+			
 	}
 	
-	if(isAscending) {
-		cout << "Ascending" << endl;
-	} else if(isDescending) {
-		cout << "Descending" << endl;
+	if(numberIndex == 0) {
+		cout << "Not Found" << endl;
 	} else {
-		cout << "Neither" << endl;
+		cout << "Last Occurrence Index: " << numberIndex << endl;
 	}
+
 	
 	return 0;
 
