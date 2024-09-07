@@ -8,32 +8,23 @@ int main() {
 
 	int size;
 	cin >> size;
-	
+
 	int sequence[size];
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
-	
-	int number;
-	cin >> number;
-	
-	int numberIndex = 0;
-	
-	for(int i = 0; i < size; ++i) {                    // Last Occurrence Index Finder
-			
-		if(sequence[i] == number) {
-			numberIndex = i;
+
+	int counter = 0;
+
+	for(int i = 0; i < size; ++i) {
+		if(((i + 2) % 2 == 0) && (sequence[i] % 2 == 0)) {  	  // Even Numbers in Even Places Counter
+			counter++;
 		}
-			
-	}
-	
-	if(numberIndex == 0) {
-		cout << "Not Found" << endl;
-	} else {
-		cout << "Last Occurrence Index: " << numberIndex << endl;
 	}
 
-	
+	cout << counter << endl;
+
+
 	return 0;
 
 }
