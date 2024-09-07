@@ -14,22 +14,25 @@ int main() {
 		cin >> sequence[i];
 	}
 	
-	int difference = sequence[1] - sequence[0];
-	bool isArithmetic = true;
+	float ratio = (float)sequence[1] / (float)sequence[0];
+	// cout << ratio << endl;
+	bool isGeometric = true;
 	
 	for(int i = 2; i < size; ++i) {
-		int currentDifference = sequence[i] - sequence[i - 1];                              // Arithmetic Progression Checker
-		if(difference != currentDifference) {
-			isArithmetic = false;
+		float currentRatio = (float)sequence[i] / (float)sequence[i - 1];                    // Geometric Progression Checker
+		// cout << currentRatio << endl;
+		if(currentRatio != ratio) {
+			isGeometric = false;
 			break;
 		}
 	}
 	
-	if(isArithmetic) {
+	if(isGeometric) {
 		cout << "Yes" << endl;
 	} else {
 		cout << "No" << endl;
 	}
 	
 	return 0;
+
 }
