@@ -9,28 +9,27 @@ int main() {
 	int size;
 	cin >> size;
 	int sequence[size];
-	
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
 	
-	float ratio = (float)sequence[1] / (float)sequence[0];
-	// cout << ratio << endl;
-	bool isGeometric = true;
+	bool isAscending = true;
+	bool isDescending = true;
 	
-	for(int i = 2; i < size; ++i) {
-		float currentRatio = (float)sequence[i] / (float)sequence[i - 1];                    // Geometric Progression Checker
-		// cout << currentRatio << endl;
-		if(currentRatio != ratio) {
-			isGeometric = false;
-			break;
+	for(int i = 1; i < size; ++i) {
+		if(sequence[i] > sequence[i - 1]) {
+			isDescending = false;
+		} else if(sequence[i] < sequence[i - 1]) {				// Sequence Order Checker
+			isAscending = false;
 		}
 	}
 	
-	if(isGeometric) {
-		cout << "Yes" << endl;
+	if(isAscending) {
+		cout << "Ascending" << endl;
+	} else if(isDescending) {
+		cout << "Descending" << endl;
 	} else {
-		cout << "No" << endl;
+		cout << "Neither" << endl;
 	}
 	
 	return 0;
