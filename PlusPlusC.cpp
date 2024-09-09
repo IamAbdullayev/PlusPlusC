@@ -14,19 +14,24 @@ int main() {
 		cin >> sequence[i];
 	}
 
-	int countLocalMax = 0;
-	int countLocalMin = 0;
+	int countDistinctElement = size;
 
-	for(int i = 1; i < size - 1; ++i) {
-		if(sequence[i] > sequence[i - 1] && sequence[i] > sequence[i + 1]) {						// Count Local Minima and Maxima
-			countLocalMax++;
-		}
-		if(sequence[i] < sequence[i - 1] && sequence[i] < sequence[i + 1]) {
-			countLocalMin++;
+	for(int i = 1; i < size; ++i) {
+		if(sequence[i-1] != sequence[i]) {
+			
+			for(int j = i; j < size; ++j) {
+				if(sequence[i-1] == sequence[j]) {				// Count Distinct Elements in Non-decreasing Sequence
+					countDistinctElement--;
+				}
+			}
+
+		} else {
+			countDistinctElement--;
 		}
 	}
+	
 
-	cout << "Local Minima: " << countLocalMin << endl << "Local Maxima: " << countLocalMax << endl;
+	cout << "Distinct Elements: " << countDistinctElement << endl;
 
 
 	return 0;
