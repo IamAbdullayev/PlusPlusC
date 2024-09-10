@@ -14,30 +14,16 @@ int main() {
 		cin >> sequence[i];
 	}
 	
-	int numberDistinctElements = size;
+	int numberDistinctElement = size;
 	
 	for(int i = 1; i < size; ++i) {
-			
-		if(sequence[i-1] != sequence[i]) {
-				
-			for(int j = i; j < size; ++j) {
-					
-				if(sequence[i-1] == sequence[j]) {			// Count Distinct Elements in Unordered Sequence
-					numberDistinctElements--;
-					break;
-				}
-					
-			}
-				
-		} else {
-			numberDistinctElements--;
+		if(sequence[i-1] == sequence[i]) {		// Count Distinct Elements in Non-decreasing Sequence
+			numberDistinctElement--;
 		}
-			
 	}
 	
+	cout << "Distinct Elements: " << numberDistinctElement << endl;
 	
-	
-	cout << "Distinct Elements: " << numberDistinctElements << endl;
 	
 	return 0;
 
