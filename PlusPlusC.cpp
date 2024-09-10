@@ -8,32 +8,37 @@ int main() {
 
 	int size;
 	cin >> size;
-
+	
 	int sequence[size];
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
-
-	int countDistinctElement = size;
-
+	
+	int numberDistinctElements = size;
+	
 	for(int i = 1; i < size; ++i) {
-		if(sequence[i-1] != sequence[i]) {
 			
+		if(sequence[i-1] != sequence[i]) {
+				
 			for(int j = i; j < size; ++j) {
-				if(sequence[i-1] == sequence[j]) {				// Count Distinct Elements in Non-decreasing Sequence
-					countDistinctElement--;
+					
+				if(sequence[i-1] == sequence[j]) {			// Count Distinct Elements in Unordered Sequence
+					numberDistinctElements--;
+					break;
 				}
+					
 			}
-
+				
 		} else {
-			countDistinctElement--;
+			numberDistinctElements--;
 		}
+			
 	}
 	
-
-	cout << "Distinct Elements: " << countDistinctElement << endl;
-
-
+	
+	
+	cout << "Distinct Elements: " << numberDistinctElements << endl;
+	
 	return 0;
 
 }
