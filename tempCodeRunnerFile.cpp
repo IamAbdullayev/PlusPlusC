@@ -1,3 +1,1 @@
-er > 10) {
-					// 	counter = 0;
-					// }
+<< "************" << numberOfZero

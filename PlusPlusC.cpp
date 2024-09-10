@@ -13,27 +13,28 @@ int main() {
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
-	
-	
-	int subSequence[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-	int number = 0;
-	int counter = 0;
 
-	for(int i = 0; i < size; ++i) {
-		if(size >= 10) {
-			if(sequence[i] == subSequence[counter]) {				// Count Occurrences of Subsequence
-				counter++;
-				number++;
-				if(counter == 10) {
-					counter = 0;
-				}
-			} else {
-				counter = 0;
-			}
-		}  
-	}
+
+	int numberOfZero = 1;
+	int maxZeroSequence = numberOfZero;
 	
-	cout << "Occurrences of Subsequence: " << (number / 10) << endl;
+	for(int i = 1; i < size; ++i) {
+
+		if(sequence[i] == 0 && sequence[i - 1] == 0) {			// Maximum Length of Consecutive Zeros
+			numberOfZero++;
+		}
+		if(maxZeroSequence < numberOfZero) {
+			maxZeroSequence = numberOfZero;
+		}
+		if(sequence[i] != 0) {
+			numberOfZero = 1;
+		}
+
+	}
+
+
+
+	cout << "Length of Maximum Consecutive Zeros: " << maxZeroSequence << endl;
 
 	return 0;
 
