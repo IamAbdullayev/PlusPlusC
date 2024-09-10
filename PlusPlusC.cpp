@@ -14,17 +14,27 @@ int main() {
 		cin >> sequence[i];
 	}
 	
-	int numberDistinctElement = size;
 	
-	for(int i = 1; i < size; ++i) {
-		if(sequence[i-1] == sequence[i]) {		// Count Distinct Elements in Non-decreasing Sequence
-			numberDistinctElement--;
-		}
+	int subSequence[10] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+	int number = 0;
+	int counter = 0;
+
+	for(int i = 0; i < size; ++i) {
+		if(size >= 10) {
+			if(sequence[i] == subSequence[counter]) {				// Count Occurrences of Subsequence
+				counter++;
+				number++;
+				if(counter == 10) {
+					counter = 0;
+				}
+			} else {
+				counter = 0;
+			}
+		}  
 	}
 	
-	cout << "Distinct Elements: " << numberDistinctElement << endl;
-	
-	
+	cout << "Occurrences of Subsequence: " << (number / 10) << endl;
+
 	return 0;
 
 }
