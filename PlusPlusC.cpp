@@ -13,29 +13,31 @@ int main() {
 	for(int i = 0; i < size; ++i) {
 		cin >> sequence[i];
 	}
-
-
-	int numberOfZero = 1;
-	int maxZeroSequence = numberOfZero;
 	
-	for(int i = 1; i < size; ++i) {
-
-		if(sequence[i] == 0 && sequence[i - 1] == 0) {			// Maximum Length of Consecutive Zeros
-			numberOfZero++;
+	
+	int counter = 0;
+	int maxPortion = 0;
+	
+	for(int i = 1; i < size; ++i) {				// Length of Largest Ascending Portion
+			
+		if(sequence[i - 1] < sequence[i]) {
+			counter++;
+		} else {
+			if(maxPortion < counter) {
+				maxPortion = counter;
+			}
+			counter = 0;
 		}
-		if(maxZeroSequence < numberOfZero) {
-			maxZeroSequence = numberOfZero;
-		}
-		if(sequence[i] != 0) {
-			numberOfZero = 1;
-		}
-
+			
 	}
 
+	if(maxPortion < counter) {
+		maxPortion = counter;
+	}
+	
+	cout << "Length of Largest Ascending Portion: " << maxPortion << endl;
 
-
-	cout << "Length of Maximum Consecutive Zeros: " << maxZeroSequence << endl;
-
+	
 	return 0;
 
 }
