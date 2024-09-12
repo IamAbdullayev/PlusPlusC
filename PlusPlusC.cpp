@@ -5,7 +5,6 @@
 using namespace std;
 
 int main() {
-
 	int length;
 	cin >> length;
 
@@ -14,39 +13,22 @@ int main() {
 		cin >> sequence[i];
 	}
 
-	int x;
-	cin >> x;
 
+	bool marker = true;
 
-	int arithmeticMean = 0;
-	int max = sequence[0];
-	int min = sequence[0];
-	
 	for(int i = 0; i < length; ++i) {
-		arithmeticMean += sequence[i];
-		if(max < sequence[i]) {
-			max = sequence[i];
-		} else if(min > sequence[i]) {
-			min = sequence[i];
+		if(sequence[i] != sequence[(length - 1) - i]) {			// Check Symmetry of Array Elements
+			marker = false;
+			break;
 		}
 	}
 
-	arithmeticMean = arithmeticMean / length;
-
-	cout << max << endl;
-	cout << arithmeticMean << endl;
-	cout << min << endl;
-	cout << x << endl;
-
-	if(min <= x && x < (arithmeticMean / 2)) {			// 87. Closest Value to Min, Max, and Mean
-		cout << "Minimum" << endl;
-	} else if((arithmeticMean / 2 + arithmeticMean) < x && x <= max) {
-		cout << "Maximum" << endl;
+	if (marker) {
+		cout << "Symmetrical" << endl;
 	} else {
-		cout << "Mean" << endl;
+		cout << "Not Symmetrical" << endl;
 	}
 
 
 	return 0;
-
 }
