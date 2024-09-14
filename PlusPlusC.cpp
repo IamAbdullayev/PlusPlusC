@@ -5,6 +5,7 @@
 using namespace std;
 
 int main() {
+
 	int length;
 	cin >> length;
 
@@ -13,22 +14,33 @@ int main() {
 		cin >> sequence[i];
 	}
 
+	int K;
+	cin >> K;
 
-	bool marker = true;
 
-	for(int i = 0; i < length; ++i) {
-		if(sequence[i] != sequence[(length - 1) - i]) {			// Check Symmetry of Array Elements
-			marker = false;
-			break;
+	if(1 <= K && K <= length) {
+
+		for(int i = 0; i < length; ++i) {
+
+			if(i <= (K / 2) - 1) {
+				int temp = sequence [i];
+				sequence[i] = sequence[K - 1 - i];			// Reverse Array Elements up to K
+
+				sequence[K - 1 - i] = temp;
+			}
+
+			cout << sequence[i] << " ";
+
 		}
-	}
 
-	if (marker) {
-		cout << "Symmetrical" << endl;
 	} else {
-		cout << "Not Symmetrical" << endl;
-	}
 
+		cout << "1 <= K <= " << length << endl;
+
+	}
+	
+	cout << endl;
 
 	return 0;
+
 }
