@@ -22,18 +22,11 @@ int main() {
 
 		for(int i = 0; i < length; ++i) {
 
-			if ((length - (K - 1)) % 2 == 0) {
-				if(K + i <= ((length + K) / 2)) {
-					sequence[length - 1 - i] = sequence [K - 1 + i] + sequence[length - 1 - i];
-					sequence[K - 1 + i] = sequence[length - 1 - i] - sequence[K - 1 + i];
-					sequence[length - 1 - i] = sequence[length - 1 - i] - sequence[K - 1 + i];			// Reverse Array Elements from K to N
-				}
-			} else {
-				if(K + i < ((length + K) / 2)) {
-					sequence[length - 1 - i] = sequence [K - 1 + i] + sequence[length - 1 - i];
-					sequence[K - 1 + i] = sequence[length - 1 - i] - sequence[K - 1 + i];
-					sequence[length - 1 - i] = sequence[length - 1 - i] - sequence[K - 1 + i];
-				}
+			if(K + i <= ((length + K) / 2)) {
+				int temp = sequence [K - 1 + i];
+				sequence[K - 1 + i] = sequence[length - 1 - i];			// Reverse Array Elements from K to N
+
+				sequence[length - 1 - i] = temp;
 			}
 
 			cout << sequence[i] << " ";
@@ -45,7 +38,7 @@ int main() {
 		cout << "1 <= K <= " << length << endl;
 
 	}
-    
+	
 	cout << endl;
 
 	return 0;
