@@ -15,23 +15,19 @@ int main() {
 		}
 
 
-		for(int i = 0; i < length - 1; ++i) {
-			for(int j = 0; j < length - 1; ++j) { 
+		for(int i = 0; i < length; ++i) {
+			for(int j = i; j < length; ++j) { 
 				
-				if(sequence[j] <= 0 && sequence[j + 1] >= 0) {			// 2# Group Positive and Negative Elements in Array
-					int temp = sequence[j];
-					sequence[j] = sequence[j + 1];
-					sequence[j + 1] = temp;
+				if(sequence[i] > sequence[j]) {			// Sort Array in Ascending Order
+					int temp = sequence[i];
+					sequence[i] = sequence[j];
+					sequence[j] = temp;
 				}
 
 			}
 
-		}
-		
-		for(int i = 0; i < length; ++i) {
 			cout << sequence[i] << " ";
 		}
-		cout << endl;
 
 	} else {
 
