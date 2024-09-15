@@ -5,7 +5,6 @@
 using namespace std;
 
 int main() {
-
 	int length;
 	cin >> length;
 
@@ -16,10 +15,10 @@ int main() {
 		}
 
 
-		for(int i = 0; i < length; ++i) {
+		for(int i = 0; i < length - 1; ++i) {
 			for(int j = 0; j < length - 1; ++j) { 
 				
-				if(sequence[j] < 0 && sequence[j + 1] > 0) {			// Group Positive and Negative Elements in Array
+				if(sequence[j] <= 0 && sequence[j + 1] >= 0) {			// 2# Group Positive and Negative Elements in Array
 					int temp = sequence[j];
 					sequence[j] = sequence[j + 1];
 					sequence[j + 1] = temp;
