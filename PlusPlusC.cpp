@@ -14,32 +14,28 @@ int main() {
 		cin >> sequence[i];
 	}
 
-	int K, L;
-	cin >> K;
-	cin >> L;
 
+	if(1 <= length && length <= 100) {
 
-	if((1 <= K && K <= length) && (K <= L && L <= length) && (1 <= length && length <= 100)) {
+		for(int i = length - 1; i > 0; --i) {				// Cyclically Shift Array Elements to the Right
 
-		for(int i = 0; i < length; ++i) {
-
-			if(K + i <= ((L + K) / 2)) {
-				int temp = sequence [K - 1 + i];
-				sequence[K - 1 + i] = sequence[L - 1 - i];					// Reverse Array Elements from K to L
-				sequence[L - 1 - i] = temp;
-			}
-
-			cout << sequence[i] << " ";
+			int temp = sequence[i];
+			sequence[i] = sequence[i - 1];
+			sequence[i - 1] = temp;
 
 		}
-
+		
 	} else {
 
-		cout << "1 <= length <= 100; " << endl << "1 <= K <= L <= " << length << endl;
+		cout << "length = " << length <<"; 1 <= length <= 100;";
 
 	}
-	
+
+	for (int i = 0; i < length; i++) {
+		cout << sequence[i] << " ";
+	}
 	cout << endl;
+
 
 	return 0;
 
