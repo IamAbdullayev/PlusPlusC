@@ -11,25 +11,21 @@ int main() {
 
 	if(1 <= length && length <= 100) {
 		int sequence[length];
+		float cloneSequence[length];
 		for(int i = 0; i < length; ++i) {
 			cin >> sequence[i];
+			cloneSequence[i] = sequence[i];
 		}
 
+		for(int i = 0; i < length; ++i) {
+			if(i != 0 && i != length - 1) {
+				cloneSequence[i] = (float)(sequence[i - 1] + sequence[i + 1]) / 2;		// Replace Array Elements with Half the Sum of Neighbors
+			}
 
-		int lastElement = sequence[length - 1];				// 2# Cyclically Shift Array Elements to the Right
-		for(int i = length - 1; i > 0; --i) {	
-
-			sequence[i] = sequence[i - 1];
-
+			cout << cloneSequence[i] << " ";
 		}
-		sequence[0] = lastElement;
 
-
-		for (int i = 0; i < length; i++) {
-			cout << sequence[i] << " ";
-		}
 		cout << endl;
-
 
 	} else {
 		cout << "length = " << length <<"; 1 <= length <= 100;";
