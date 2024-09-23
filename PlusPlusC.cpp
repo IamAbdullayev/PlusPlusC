@@ -6,27 +6,34 @@
 using namespace std;
 
 int main() {
-	int length = 100;
+// || ==== Pointer to Pointer Operations ================================ ||
 
-	char str1[length];
-	char str2[length];
+	int var;
+	int *ptr;
+	int **pptr;
 
-	cin.getline(str1, length);
-	cin.getline(str2, length);				// Concatenate Strings using Pointer
+	var = 30;
 
-	char* s1 = str1;
-	char* s2 = str2;
+	ptr = &var;
 
-	int len1 = strlen(str1);
-	int len2 = strlen(str2);
+	pptr = &ptr;
+	
+	cout << var << endl;									// var - value of var = 30
+	cout << &var << endl;									// &var - memory address of var
+	cout << *(&var) << endl << endl;			// *(&var) - 1) &var - reference var = memory address of var; 2) *(memory address of var) - dereference &var = 30
 
-	for(int i = 0; i < len2; ++i) {
-		s1[len1 + i] = s2[i];
-	}
-	s1[len1 + len2] = 0;
+	cout << ptr << endl;									// ptr - stores the memory address of var (ptr = &var) (pointers store memory addresses)
+	cout << &ptr << endl;									// &ptr - reference ptr = memory address of ptr
+	cout << *ptr << endl << endl;					// *ptr - dereference ptr = var (30); ptr => &var; *ptr => *(&var); *(&var) or *ptr => var; var => 30
 
-	cout << "Concatenated string: " << s1 << endl;
+	cout << pptr << endl;									// pptr - stores the memory address of ptr (**ptr = &ptr)
+	cout << &pptr << endl;								// &pptr - memory address of pptr (reference)
+	cout << *pptr << endl;								// *pptr - dereference pptr = ptr (the memory address of var); pptr => &ptr; *pptr => *(&ptr) or &var or ptr; 
+	cout << &(*pptr) << endl << endl;			// &(*pptr) - 1) *pptr => dereference pptr = ptr; 2) &(*pptr) - reference ptr (the memory address of ptr)
+
+	cout << **pptr << endl;								// **pptr - (the value at address ptr (30)) **pptr => dereference *pptr (*pptr = ptr or &var); *pptr = ptr (the memory address of var)
+	cout << &(**pptr) << endl << endl;		// &(**pptr) - &var (the memory address of var); **pptr is value of var. reference value of var is &var
 
 
-	return 0;
+    return 0;
 }
