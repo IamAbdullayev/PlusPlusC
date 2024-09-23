@@ -1,18 +1,31 @@
 #include <iostream>
 #include <iomanip>
 #include <cmath>
+#include <cstring>
 
 using namespace std;
 
 int main() {
+	int length = 100;
 
-	int arr[] = {10, 20, 30, 40, 50};
+	char str1[length];
+	char str2[length];
 
-	int* ptrArr = arr;
+	cin.getline(str1, length);
+	cin.getline(str2, length);				// Concatenate Strings using Pointer
 
-	for(int i = (sizeof(arr) / sizeof(arr[0])) - 1; i >= 0; --i) {		// Reverse Array using Pointer
-		cout << *(ptrArr + i) << endl;
+	char* s1 = str1;
+	char* s2 = str2;
+
+	int len1 = strlen(str1);
+	int len2 = strlen(str2);
+
+	for(int i = 0; i < len2; ++i) {
+		s1[len1 + i] = s2[i];
 	}
+	s1[len1 + len2] = 0;
+
+	cout << "Concatenated string: " << s1 << endl;
 
 
 	return 0;
