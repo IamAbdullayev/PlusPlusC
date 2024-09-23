@@ -5,21 +5,20 @@
 using namespace std;
 
 int main() {
-	char text[100];
-	cin.getline(text, sizeof(text));
 
-	char* p_text = text;
-	int counter = 0;
+	int length = 100;
 
-	for(size_t i = 0; i < sizeof(text); ++i) {			// String Length using Pointer
-		if(*(p_text + i) != 0) {
-			counter++;
-		} else {
-			break;
-		}
+	char source[length], destination[length];
+	cin.getline(source, sizeof(source));
+
+	char* ptrSource = source;
+	char* ptrDestination = destination;
+
+	for(size_t i = 0; *(ptrSource + i) >= 0; ++i) {
+		*(ptrDestination + i) = *(ptrSource + i);
 	}
-
-	cout << "Length of the string: " << counter << endl;
+	
+	cout << "Copied string: " << ptrDestination << endl;
 
 
 	return 0;
