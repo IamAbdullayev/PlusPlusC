@@ -6,22 +6,13 @@ using namespace std;
 
 int main() {
 
-	int length = 100;
+	int arr[] = {10, 20, 30, 40, 50};
 
-	char source[length], destination[length];
-	cin.getline(source, sizeof(source));
+	int* ptrArr = arr;
 
-	char* ptrSource = source;
-	char* ptrDestination = destination;
-	int counter = 0;
-
-	for(size_t i = 0; *(ptrSource + i) != 0; ++i) {			// 2# String Copy using Pointer
-		ptrDestination[i] = ptrSource[i];
-		counter++;
+	for(int i = (sizeof(arr) / sizeof(arr[0])) - 1; i >= 0; --i) {		// Reverse Array using Pointer
+		cout << *(ptrArr + i) << endl;
 	}
-	ptrDestination[counter] = 0;
-
-	cout << "Copied string: " << ptrDestination << endl;
 
 
 	return 0;
