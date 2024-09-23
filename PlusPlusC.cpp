@@ -5,35 +5,21 @@
 using namespace std;
 
 int main() {
-	int length;
-	cin >> length;
+	char text[100];
+	cin.getline(text, sizeof(text));
 
-	if(1 <= length && length <= 100) {
-		int sequence[length];
-		for(int i = 0; i < length; ++i) {
-			cin >> sequence[i];
+	char* p_text = text;
+	int counter = 0;
+
+	for(size_t i = 0; i < sizeof(text); ++i) {			// String Length using Pointer
+		if(*(p_text + i) != 0) {
+			counter++;
+		} else {
+			break;
 		}
-
-
-		for(int i = 0; i < length; ++i) {
-			for(int j = i; j < length; ++j) { 
-				
-				if(sequence[i] > sequence[j]) {			// Sort Array in Ascending Order
-					int temp = sequence[i];
-					sequence[i] = sequence[j];
-					sequence[j] = temp;
-				}
-
-			}
-
-			cout << sequence[i] << " ";
-		}
-
-	} else {
-
-		cout << "length = " << length <<"; 1 <= length <= 100;";
-
 	}
+
+	cout << "Length of the string: " << counter << endl;
 
 
 	return 0;
