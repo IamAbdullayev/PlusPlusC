@@ -6,15 +6,24 @@
 using namespace std;
 
 int main() {
-	system("cls");
+	// system("cls");
 
 	char text[1000];
 	cin.getline(text, sizeof(text));
 
-	for(int i = strlen(text) - 1; i >= 0; --i) {			// Reverse a String
-		cout << text[i];
+
+	for(int i = 0; i < strlen(text); ++i) {			 
+		if(isalpha(text[i]) && text[i] != 'Z' && text[i] != 'z') {		// Shift Letters in a String
+			text[i] += 1;
+		} else if(text[i] == 'Z') {
+			text[i] = 'A';
+		}	else if(text[i] == 'z') {
+			text[i] = 'a';
+		}
 	}
-	cout << endl;
+
+	cout << text << endl;
+
 
   return 0;
 }
