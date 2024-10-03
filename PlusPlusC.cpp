@@ -11,14 +11,15 @@ int main() {
 	char text[1000];
 	cin.getline(text, sizeof(text));
 
+	if(isalpha(text[0]) && islower(text[0])) {
+		text[0] = toupper(text[0]);
+	}
 
-	for(int i = 0; i < strlen(text); ++i) {			 
-		if(isalpha(text[i]) && text[i] != 'Z' && text[i] != 'z') {		// Shift Letters in a String
-			text[i] += 1;
-		} else if(text[i] == 'Z') {
-			text[i] = 'A';
-		}	else if(text[i] == 'z') {
-			text[i] = 'a';
+	for(size_t i = 1; i < strlen(text); ++i) {			 // Capitalize Words in a String
+		if(isalpha(text[i]) && isupper(text[i]) && isalpha(text[i - 1])) {
+			text[i] = tolower(text[i]);
+		} else if(!isalpha(text[i - 1])) {
+			text[i] = toupper(text[i]);
 		}
 	}
 
