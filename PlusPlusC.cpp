@@ -11,19 +11,34 @@ int main() {
 	char text[1000];
 	cin.getline(text, sizeof(text));
 
-	if(isalpha(text[0]) && islower(text[0])) {
-		text[0] = toupper(text[0]);
-	}
+	int length(0);
+	int indexStart(0);
+	int indexMax(0);
 
-	for(size_t i = 1; i < strlen(text); ++i) {			 // Capitalize Words in a String
-		if(isalpha(text[i]) && isupper(text[i]) && isalpha(text[i - 1])) {
-			text[i] = tolower(text[i]);
-		} else if(!isalpha(text[i - 1])) {
-			text[i] = toupper(text[i]);
+	for(size_t i = indexStart; i < strlen(text); ++i) {			 // Largest Word in a String
+		int counter(0);
+
+		for(size_t j = indexStart; j < strlen(text) + 1; ++j) {
+			if(!isalnum(text[j])) {
+				indexStart = j+1;
+
+				if(length < counter) {
+					length = counter;
+					indexMax = j - counter;
+				}
+				
+				break;
+			}
+			
+			counter++;
 		}
 	}
 
-	cout << text << endl;
+	for(size_t i = indexMax; isalnum(text[i]); ++i) {
+		cout << text[i];
+	}
+
+	cout << endl;
 
 
   return 0;
