@@ -12,18 +12,25 @@ int main() {
 	cin.getline(text, sizeof(text));
 
 
-	int counter(0);
+	bool trueOrFalse(true);
+	int len = strlen(text);
 
-	for(size_t i = 0; i < strlen(text); ++i) {				// Count Vowels in a String
+	for(int i = 0; i < len / 2; ++i) {				// Check Palindrome
 
-		if(text[i] == 'a' || text[i] == 'e' || text[i] == 'o' || text[i] == 'u' || text[i] == 'i') {
-			counter++;
+		if(text[i] != text[(len - 1) - i]) {
+			trueOrFalse = false;
 		}
 
 	}
 
-	cout << "number of vowels -> " << counter << endl;
+	// cout << boolalpha;
+	// cout << trueOrFalse << endl; // true  :)
 
+	if(trueOrFalse == 1) {
+		cout << "True" << endl;
+	} else {
+		cout << "False" << endl;
+	}
 
   return 0;
 }
