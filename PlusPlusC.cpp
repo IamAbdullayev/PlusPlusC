@@ -13,11 +13,11 @@ int main() {
 
 
 	for(size_t i = 0; i < strlen(text); ++i) {
-		for(size_t j = i; j < strlen(text); ++j) {
-			if(text[i] > text[j]) {
-				text[i] = text[i] + text[j];
-				text[j] = text[i] - text[j];
-				text[i] = text[i] - text[j];
+		for(size_t j = strlen(text) - 1; j != 0; --j) { 			// 2# Sort Characters in a String
+			if(text[j] < text[j - 1]) {
+				text[j] = text[j] + text[j - 1];
+				text[j - 1] = text[j] - text[j - 1];
+				text[j] = text[j] - text[j - 1];
 			}
 		}
 		if(isalpha(text[i])) {
