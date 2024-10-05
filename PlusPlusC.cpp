@@ -12,18 +12,17 @@ int main() {
 	cin.getline(text, sizeof(text));
 
 
-	for(size_t i = 0; i < strlen(text); ++i) {
-		for(size_t j = strlen(text) - 1; j != 0; --j) { 			// 2# Sort Characters in a String
-			if(text[j] < text[j - 1]) {
-				text[j] = text[j] + text[j - 1];
-				text[j - 1] = text[j] - text[j - 1];
-				text[j] = text[j] - text[j - 1];
-			}
+	int counter(0);
+
+	for(size_t i = 0; i < strlen(text); ++i) {				// Count Vowels in a String
+
+		if(text[i] == 'a' || text[i] == 'e' || text[i] == 'o' || text[i] == 'u' || text[i] == 'i') {
+			counter++;
 		}
-		if(isalpha(text[i])) {
-			cout << text[i];
-		}
+
 	}
+
+	cout << "number of vowels -> " << counter << endl;
 
 
   return 0;
