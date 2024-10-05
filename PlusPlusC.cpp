@@ -11,34 +11,19 @@ int main() {
 	char text[1000];
 	cin.getline(text, sizeof(text));
 
-	int length(0);
-	int indexStart(0);
-	int indexMax(0);
 
-	for(size_t i = indexStart; i < strlen(text); ++i) {			 // Largest Word in a String
-		int counter(0);
-
-		for(size_t j = indexStart; j < strlen(text) + 1; ++j) {
-			if(!isalnum(text[j])) {
-				indexStart = j+1;
-
-				if(length < counter) {
-					length = counter;
-					indexMax = j - counter;
-				}
-				
-				break;
+	for(size_t i = 0; i < strlen(text); ++i) {
+		for(size_t j = i; j < strlen(text); ++j) {
+			if(text[i] > text[j]) {
+				text[i] = text[i] + text[j];
+				text[j] = text[i] - text[j];
+				text[i] = text[i] - text[j];
 			}
-			
-			counter++;
+		}
+		if(isalpha(text[i])) {
+			cout << text[i];
 		}
 	}
-
-	for(size_t i = indexMax; isalnum(text[i]); ++i) {
-		cout << text[i];
-	}
-
-	cout << endl;
 
 
   return 0;
