@@ -7,33 +7,38 @@ using namespace std;
 
 int main() {
 	// system("cls");
-	// cout << boolalpha;
 
-	char text[1000];
-	cin.getline(text, sizeof(text));
+	char text1[1000];
+	char text2[1000];
+	cin.getline(text1, sizeof(text1));
+	cin.getline(text2, sizeof(text2));
 
 
-	int len = strlen(text);
-	char *cpyText = new char[sizeof(text) + 1];
-	int j = 0;
+	int len1 = strlen(text1);
+	int len2 = strlen(text2);
+	bool trueOrFalse = false;
 
-	for(int i = 0; i < len; ++i) {				// Insert Dash Between Odds
+	for(int i = 0; i < len2; ++i) {				// Verify Letter Existence
 
-		cpyText[j++] = text[i];
+		for(int j = 0; j < len1; ++j) {
 
-		if((text[i] % 2 != 0 && text[i+1] % 2 != 0) && (text[i] != text[i + 1])) {
-			
-			cpyText[j++] = '-';
+			if(text2[i] == text1[j]) {
+
+				trueOrFalse = true;
+				break;
+
+			} else {
+
+				trueOrFalse = false;
+
+			}
 
 		}
 
 	}
 
-	cpyText[j] = '\0';
-
-	cout << cpyText << endl;
-
-	delete []cpyText;
+	cout << boolalpha;
+	cout << trueOrFalse << endl;
 
   return 0;
 }
