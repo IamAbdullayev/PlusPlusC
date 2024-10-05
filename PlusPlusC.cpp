@@ -7,30 +7,33 @@ using namespace std;
 
 int main() {
 	// system("cls");
+	// cout << boolalpha;
 
 	char text[1000];
 	cin.getline(text, sizeof(text));
 
 
-	bool trueOrFalse(true);
 	int len = strlen(text);
+	char *cpyText = new char[sizeof(text) + 1];
+	int j = 0;
 
-	for(int i = 0; i < len / 2; ++i) {				// Check Palindrome
+	for(int i = 0; i < len; ++i) {				// Insert Dash Between Odds
 
-		if(text[i] != text[(len - 1) - i]) {
-			trueOrFalse = false;
+		cpyText[j++] = text[i];
+
+		if((text[i] % 2 != 0 && text[i+1] % 2 != 0) && (text[i] != text[i + 1])) {
+			
+			cpyText[j++] = '-';
+
 		}
 
 	}
 
-	// cout << boolalpha;
-	// cout << trueOrFalse << endl; // true  :)
+	cpyText[j] = '\0';
 
-	if(trueOrFalse == 1) {
-		cout << "True" << endl;
-	} else {
-		cout << "False" << endl;
-	}
+	cout << cpyText << endl;
+
+	delete []cpyText;
 
   return 0;
 }
