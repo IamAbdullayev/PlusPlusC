@@ -1,5 +1,1 @@
- else {
-
-				trueOrFalse = false;
-
-			}
+2# String Compression

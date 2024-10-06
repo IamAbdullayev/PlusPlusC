@@ -14,12 +14,12 @@ int main() {
 
 
 	int len = strlen(text);
-	char cpyText[len + 1];
+	char* cpyText = new char;
 
 	int counter(1);
 	int k(0);
 
-	for(int i = 0; i < len; ++i) {				// String Compression
+	for(int i = 0; i < len; ++i) {				// 2# String Compression
 
 		if(i + 1 < len && text[i] == text[i + 1]) {
 			counter++;
@@ -36,6 +36,7 @@ int main() {
 	cpyText[k] = '\0';
 	cout << cpyText << endl;
 
+	delete []cpyText;
 
   return 0;
 }
