@@ -7,38 +7,35 @@ using namespace std;
 
 int main() {
 	// system("cls");
+	// cout << boolalpha;
 
-	char text1[1000];
-	char text2[1000];
-	cin.getline(text1, sizeof(text1));
-	cin.getline(text2, sizeof(text2));
+	char text[1000];
+	cin.getline(text, sizeof(text));
 
 
-	int len1 = strlen(text1);
-	int len2 = strlen(text2);
-	bool trueOrFalse = false;
+	int len = strlen(text);
+	char cpyText[len + 1];
 
-	for(int i = 0; i < len2; ++i) {				// Verify Letter Existence
+	int counter(1);
+	int k(0);
 
-		for(int j = 0; j < len1; ++j) {
+	for(int i = 0; i < len; ++i) {				// String Compression
 
-			if(text2[i] == text1[j]) {
+		if(i + 1 < len && text[i] == text[i + 1]) {
+			counter++;
+		} else {
+			cpyText[k++] = text[i];
+			
+			k += sprintf(cpyText + k, "%d", counter);
 
-				trueOrFalse = true;
-				break;
-
-			} else {
-
-				trueOrFalse = false;
-
-			}
-
+			counter = 1;
 		}
-
 	}
 
-	cout << boolalpha;
-	cout << trueOrFalse << endl;
+
+	cpyText[k] = '\0';
+	cout << cpyText << endl;
+
 
   return 0;
 }
