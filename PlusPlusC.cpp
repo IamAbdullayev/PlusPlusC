@@ -5,38 +5,62 @@
 
 using namespace std;
 
+// void isLongSubstring(char* a, char* b) {
+
+// }
+
+
 int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	char text[1000];
-	cin.getline(text, sizeof(text));
+	char text1[1000];
+	cin.getline(text1, sizeof(text1));
+	char text2[1000];
+	cin.getline(text2, sizeof(text2));
 
 
-	int len = strlen(text);
-	char* cpyText = new char;
+	int len1 = strlen(text1);
+	int len2 = strlen(text2);
 
-	int counter(1);
-	int k(0);
+	int startID(0);
+	int maxLen(0);
 
-	for(int i = 0; i < len; ++i) {				// 2# String Compression
+	for(int i = 0; i < len1; ++i) {				// Longest Common Substring
+		int currentLen(0);
 
-		if(i + 1 < len && text[i] == text[i + 1]) {
-			counter++;
-		} else {
-			cpyText[k++] = text[i];
+		for(int j = 0; j < len2; ++j) {
+
+			if(text1[i + currentLen] == text2[j]) {
+				currentLen++;
+
+				if(currentLen > maxLen) {
+					maxLen = currentLen;
+					startID = i;
+				}
 			
-			k += sprintf(cpyText + k, "%d", counter);
+			} else {
+				currentLen = 0;
+			}
 
-			counter = 1;
+			if(i + currentLen >= len1) {
+				break;
+			}
+
 		}
+
 	}
 
+	char newText[maxLen + startID + 1];
+	int k(0);
+	
+	for(int i = startID; i < startID + maxLen; ++i) {
+		newText[k++] = text1[i];
+	}
+	newText[k] = '\0';
 
-	cpyText[k] = '\0';
-	cout << cpyText << endl;
+	cout << "Longest Common Substring: " << newText << endl;
 
-	delete []cpyText;
-
-  return 0;
+  
+	return 0;
 }
