@@ -26,7 +26,7 @@ int main() {
 	int startID(0);
 	int maxLen(0);
 
-	for(int i = 0; i < len1; ++i) {				// Longest Common Substring
+	for(int i = 0; i < len1; ++i) {				// 2# Longest Common Substring
 		int currentLen(0);
 
 		for(int j = 0; j < len2; ++j) {
@@ -51,16 +51,10 @@ int main() {
 
 	}
 
-	char newText[maxLen + startID + 1];
-	int k(0);
-	
+	cout << "Longest Common Substring: ";
 	for(int i = startID; i < startID + maxLen; ++i) {
-		newText[k++] = text1[i];
+		cout << text1[i];
 	}
-	newText[k] = '\0';
 
-	cout << "Longest Common Substring: " << newText << endl;
-
-  
-	return 0;
+  return 0;
 }
