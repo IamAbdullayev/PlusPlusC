@@ -5,56 +5,30 @@
 
 using namespace std;
 
-// void isLongSubstring(char* a, char* b) {
-
-// }
-
-
 int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	char text1[1000];
-	cin.getline(text1, sizeof(text1));
-	char text2[1000];
-	cin.getline(text2, sizeof(text2));
+	string str_1, str_2, max_sstr("");
+	getline(cin, str_1);
+	getline(cin, str_2);
 
+	int len_1 = str_1.length();
+	int len_2 = str_2.length();
 
-	int len1 = strlen(text1);
-	int len2 = strlen(text2);
-
-	int startID(0);
-	int maxLen(0);
-
-	for(int i = 0; i < len1; ++i) {				// 2# Longest Common Substring
-		int currentLen(0);
-
-		for(int j = 0; j < len2; ++j) {
-
-			if(text1[i + currentLen] == text2[j]) {
-				currentLen++;
-
-				if(currentLen > maxLen) {
-					maxLen = currentLen;
-					startID = i;
-				}
-			
-			} else {
-				currentLen = 0;
+	for(int i = 0; i < len_1; ++i) {
+		string current_sstr = "";
+		for(int j = 0; j < len_2; ++j) {		// 3# Longest Common Substring
+			if(str_1[i] == str_2[j]) {
+				current_sstr += str_1[i];
+				i++;
 			}
-
-			if(i + currentLen >= len1) {
-				break;
-			}
-
 		}
-
+		if(current_sstr.length() > max_sstr.length()) {
+			max_sstr = current_sstr;
+		}
 	}
 
-	cout << "Longest Common Substring: ";
-	for(int i = startID; i < startID + maxLen; ++i) {
-		cout << text1[i];
-	}
-
-  return 0;
+	cout << "Longest Common Substring: " << max_sstr << endl;
+	return 0;
 }
