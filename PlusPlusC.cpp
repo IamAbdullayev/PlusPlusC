@@ -4,11 +4,11 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	double length, width;				// Rectangle Area and Perimeter Calculate
-	cin >> length;
-	cin >> width;
+	double a, b, c, d;				// Total and Average of Four Numbers
+	cin >> a >> b;
+	cin >> c >> d;
 
-	cout << "The area of the rectangle is: " << areaCalc(length, width) << endl;
-	cout << "The perimeter of the rectangle is: " << perimetrCalc(length, width) << endl;
+	cout << "The total of four numbers is: " << totalCalc(a, b, c, d) << endl;
+	cout << "The average of four numbers is: " << averageCalc(a, b, c, d) << endl;
 	return 0;
 }

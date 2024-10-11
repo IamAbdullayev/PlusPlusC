@@ -6,10 +6,10 @@
 
 using namespace std;
 
-double areaCalc(double length, double width) {
-	return length * width;
+double totalCalc(double a, double b, double c, double d) {
+	return a + b + c + d;
 }
 
-double perimetrCalc(double length, double width) {
-	return (2 * length) + (2 * width);
+double averageCalc(double a, double b, double c, double d) {
+	return (a + b + d + c) / 4;
 }
