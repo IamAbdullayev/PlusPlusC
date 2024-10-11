@@ -1,14 +1,14 @@
 #include "functions.h"
 
-using namespace std;
-
 int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	double radius;
-	cin >> radius;
+	double length, width;				// Rectangle Area and Perimeter Calculate
+	cin >> length;
+	cin >> width;
 
-	cout << "The volume of a sphere is: " << sphereVolCalc(radius) << endl;
+	cout << "The area of the rectangle is: " << areaCalc(length, width) << endl;
+	cout << "The perimeter of the rectangle is: " << perimetrCalc(length, width) << endl;
 	return 0;
 }
