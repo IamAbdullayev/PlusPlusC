@@ -4,10 +4,10 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	char character[10];				// Character Code (ASCII/Unicode) Printer
-	cin.getline(character, sizeof(character));
+	double centimeters;				// Centimeter to Meter and Kilometer Converter
+	cin >> centimeters;
 
-	cout << "The ASCII value of " << character << " is: " << indexChar(character) << endl;
-	cout << "The character for the ASCII value " << indexChar(character) << " is: " << character << endl;
+	cout << "The distance in meter is: " << toMeters(centimeters) << endl;
+	cout << "The distance in kilometer is: " << toKM(centimeters) << endl;
 	return 0;
 }

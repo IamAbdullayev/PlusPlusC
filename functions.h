@@ -6,7 +6,10 @@
 
 using namespace std;
 
-int indexChar(char* character) {
-	int indexChar = *character;
-	return indexChar;
+double toMeters(double centimeters) {
+	return centimeters / 100;
+}
+
+double toKM(double centimeters) {
+	return toMeters(centimeters) / 1000;
 }
