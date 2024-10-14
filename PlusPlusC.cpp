@@ -4,10 +4,15 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	double centimeters;				// Centimeter to Meter and Kilometer Converter
-	cin >> centimeters;
+	int number;				// Even-Odd Checker
+	cin >> number;
 
-	cout << "The distance in meter is: " << toMeters(centimeters) << endl;
-	cout << "The distance in kilometer is: " << toKM(centimeters) << endl;
+	if(isEven(number)) {
+		cout << "The entered number is even" << endl;
+	} else {
+		cout << "The entered number is odd" << endl;
+	}
+
+	
 	return 0;
 }

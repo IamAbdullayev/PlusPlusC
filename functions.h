@@ -6,10 +6,10 @@
 
 using namespace std;
 
-double toMeters(double centimeters) {
-	return centimeters / 100;
-}
-
-double toKM(double centimeters) {
-	return toMeters(centimeters) / 1000;
+bool isEven(int number) {
+	if(number % 2 == 0) {
+		return true;
+	} else {
+		return false;
+	}
 }
