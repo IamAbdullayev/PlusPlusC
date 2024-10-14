@@ -6,20 +6,17 @@
 
 using namespace std;
 
-void toBinary(int number) {
-	int i = 0;
-	int bin[32];
-	while(number != 0) {
-		if(number % 2 == 0) {
-			bin[i++] = 0;
-		} else{
-			bin[i++] = 1;
+bool isPrime(int number) {
+	int counter = 0;
+	for(int i = 1; i <= number; ++i) {
+		if(number % i == 0) {
+			counter++;
 		}
+	} 
 
-		number /= 2;
-	}
-
-	for (int j = i - 1; j >= 0; --j) {
-		cout << bin[j];
+	if (counter > 2) {
+		return false;
+	} else {
+		return true;
 	}
 }
