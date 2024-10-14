@@ -4,10 +4,10 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int number;				// Even-Odd Checker
+	int number;				// Decimal to Binary Converter
 	cin >> number;
 
-	cout << sumFactorial(number) << endl;
-	
+	toBinary(number);
+
 	return 0;
 }

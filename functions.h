@@ -6,20 +6,20 @@
 
 using namespace std;
 
-int numberFactorial(int number) {
-	int factorial = 1;
-	for(int i = 0; i < number; ++i) {
-		factorial *= (number - i);
+void toBinary(int number) {
+	int i = 0;
+	int bin[32];
+	while(number != 0) {
+		if(number % 2 == 0) {
+			bin[i++] = 0;
+		} else{
+			bin[i++] = 1;
+		}
+
+		number /= 2;
 	}
 
-	return factorial / number;
-}
-
-int sumFactorial(int number) {
-	int sum = 0;
-	for(int i = 1; i <= number; ++i) {
-		sum += numberFactorial(i);
+	for (int j = i - 1; j >= 0; --j) {
+		cout << bin[j];
 	}
-
-	return sum;
 }
