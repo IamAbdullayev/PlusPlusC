@@ -7,12 +7,7 @@ int main() {
 	int number;				// Even-Odd Checker
 	cin >> number;
 
-	if(isEven(number)) {
-		cout << "The entered number is even" << endl;
-	} else {
-		cout << "The entered number is odd" << endl;
-	}
-
+	cout << sumFactorial(number) << endl;
 	
 	return 0;
 }
