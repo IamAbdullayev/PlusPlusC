@@ -6,17 +6,41 @@
 
 using namespace std;
 
-int findMaxElement(int number[], int length) {
+int findNumberLength(int num) {
+	int length = 1;
+	for(; num /= 10; ++length);
+	return length;
+}
 
-	int maxElement = number[0];
+bool isArmstrong(int num, int numLength) {
+	int temp = num;
+	int dig = temp % 10;
+	int armstrong = pow(dig, numLength);
 
-	for(int i = 1; i < length; ++i) {
-
-		if(maxElement < number[i]) {
-			maxElement = number[i];
-		}
-
+	for(int i = 1; i < numLength; ++i) {
+		temp /= 10;
+		dig = temp % 10;
+		armstrong += pow(dig, numLength);
 	}
 
-	return maxElement;
+	if(armstrong == num) {
+		return true;
+	}	else {
+		return false;
+	}
+}
+
+bool isPerfect(int num, int numLength) {
+	int sumDividers = 0;
+
+	for(int i = 1; i < num; ++i) {
+		if(num % i == 0) sumDividers += i;
+	}
+
+
+	if(sumDividers == num) {
+		return true;
+	}	else {
+		return false;
+	}
 }
