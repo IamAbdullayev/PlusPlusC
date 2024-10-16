@@ -6,17 +6,17 @@
 
 using namespace std;
 
-bool isPrime(int number) {
-	int counter = 0;
-	for(int i = 1; i <= number; ++i) {
-		if(number % i == 0) {
-			counter++;
-		}
-	} 
+int findMaxElement(int number[], int length) {
 
-	if (counter > 2) {
-		return false;
-	} else {
-		return true;
+	int maxElement = number[0];
+
+	for(int i = 1; i < length; ++i) {
+
+		if(maxElement < number[i]) {
+			maxElement = number[i];
+		}
+
 	}
+
+	return maxElement;
 }

@@ -4,14 +4,14 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int number;				// Prime Number Checker
-	cin >> number;
-
-	if(isPrime(number)) {
-		cout << "The number " << number << " is a prime number" << endl;
-	} else {
-		cout << "The number " << number << " is not a prime number" << "\n";
+	int length;
+	cin >> length;
+	int arr[length];
+	for(int i = 0; i < length; ++i) {			// Largest Element Finder
+		cin >> arr[i];
 	}
+
+	cout << findMaxElement(arr, length) << endl;
 
 	return 0;
 }
