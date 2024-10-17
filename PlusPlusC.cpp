@@ -4,11 +4,16 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int start, end;
-	cin >> start;
-	cin >> end;			// Perfect Number Finder
+	string word_1, word_2;				// Anagram Checker
+	getline(cin, word_1);
+	getline(cin, word_2);
 
-	isPerfect(start, end);
+
+	if(isAnagram(word_1, word_2)) {
+		cout << "Anagram" << endl;
+	} else {
+		cout << "Not Anagram" << endl;
+	}
 
 	return 0;
 }
