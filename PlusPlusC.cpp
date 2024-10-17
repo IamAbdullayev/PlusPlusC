@@ -3,17 +3,12 @@
 int main() {
 	// system("cls");
 	// cout << boolalpha;
+	int number;
+	cin >> number;					// Number Conversion Functions
 
-	string word_1, word_2;				// Anagram Checker
-	getline(cin, word_1);
-	getline(cin, word_2);
-
-
-	if(isAnagram(word_1, word_2)) {
-		cout << "Anagram" << endl;
-	} else {
-		cout << "Not Anagram" << endl;
-	}
+	cout << "Bin: " << convertToBinary(number) << endl;
+	cout << "Hex: " << convertToHex(number) << endl;
+	cout << "Oct: " << convertToOctal(number) << endl;
 
 	return 0;
 }

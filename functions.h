@@ -3,36 +3,62 @@
 #include <cmath>
 #include <cstring>
 #include <math.h>
+#include <sstream>
+#include <string>
 
 using namespace std;
 
-bool isAnagram(string word_1, string word_2) {
-	bool mark;
-	int counter_1, counter_2;
 
-	int length = (word_1.length() == word_2.length()) ? word_1.length() : 0;
+string convertToHex(int num) {
+	string hexNum;
+	if(num <= 0) return hexNum = '0';
 
-	if(length == 0) return false;
-	for(int i = 0; i < length; ++i) {
-		mark = false;
-		counter_1 = 0;
-		counter_2 = 0;
+	while(num) {
+		string hexDig;
 
-		for(int j = 0; j < length; ++j) {
-			if(word_1[i] == word_2[j]) {
-				for(int k = 0; k < length; ++k) {
-					if(word_1[i] == word_1[k]) counter_1++;
-					if(word_2[j] == word_2[k]) counter_2++;
-				}
-				
-				if(counter_1 == counter_2) {
-					mark = true;
-				}
-			}
-		}
+		if((num % 16) == 10) hexDig = 'A';
+		if((num % 16) == 11) hexDig = 'B';
+		if((num % 16) == 12) hexDig = 'C';
+		if((num % 16) == 13) hexDig = 'D';
+		if((num % 16) == 14) hexDig = 'E';
+		if((num % 16) == 15) hexDig = 'F';
 
-		if(!mark) return false;
+		if ((num % 16) < 10) hexDig = to_string(num % 16);
+
+		hexNum = hexDig + hexNum;
+
+		num /= 16;
 	}
 
-	return mark;
+	return hexNum;
+}
+
+
+string convertToBinary(int num) {
+	string binNum;
+	if(num <= 0) return binNum = '0';
+
+	while(num > 0) {
+		string binDig = to_string(num % 2);
+		binNum = binDig + binNum;
+		
+		num /= 2;
+	}
+
+	return binNum;
+}
+
+
+string convertToOctal(int num) {
+	string octNum;
+	if(num <= 0) return octNum = '0';
+
+	while(num > 0) {
+		string octDig = to_string(num % 8);
+		octNum = octDig + octNum;
+		
+		num /= 8;
+	}
+
+	return octNum;
 }
