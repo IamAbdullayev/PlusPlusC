@@ -4,11 +4,13 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 	int number;
-	cin >> number;					// Number Conversion Functions
+	cin >> number;					// 2# Number Conversion Function
+	cin.ignore();
+	
+	string format;
+	getline(cin, format);
 
-	cout << "Bin: " << convertToBinary(number) << endl;
-	cout << "Hex: " << convertToHex(number) << endl;
-	cout << "Oct: " << convertToOctal(number) << endl;
+	cout << convertTo(number, format) << endl;
 
 	return 0;
 }
