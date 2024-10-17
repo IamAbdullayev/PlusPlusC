@@ -6,41 +6,20 @@
 
 using namespace std;
 
-int findNumberLength(int num) {
-	int length = 1;
-	for(; num /= 10; ++length);
-	return length;
-}
+void isPerfect(int start, int end) {
+	cout << "The perfect numbers between " << start << " to " << end << " are: ";
 
-bool isArmstrong(int num, int numLength) {
-	int temp = num;
-	int dig = temp % 10;
-	int armstrong = pow(dig, numLength);
+	for(int i = start; i < end; ++i) {
+		int sumDividers = 0;
 
-	for(int i = 1; i < numLength; ++i) {
-		temp /= 10;
-		dig = temp % 10;
-		armstrong += pow(dig, numLength);
+		for(int j = 1; j < i; ++j) {
+			if(i % j == 0) sumDividers += j;
+		}
+
+		if(sumDividers == i) {
+			 cout << i << " ";
+		}
 	}
 
-	if(armstrong == num) {
-		return true;
-	}	else {
-		return false;
-	}
-}
-
-bool isPerfect(int num, int numLength) {
-	int sumDividers = 0;
-
-	for(int i = 1; i < num; ++i) {
-		if(num % i == 0) sumDividers += i;
-	}
-
-
-	if(sumDividers == num) {
-		return true;
-	}	else {
-		return false;
-	}
+	cout << endl;
 }
