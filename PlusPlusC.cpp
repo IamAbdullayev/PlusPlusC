@@ -4,36 +4,32 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int m, n;
-	cin >> m >> n;
+	int n;
+	cin >> n;
 	
-	int matrix[m][n];
-	for (int i = 0; i < m; ++i) {
+	int matrix[n][n];
+	for (int i = 0; i < n; ++i) {				// Diagonal and Above Zeroing
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
-	
-	int uniqueElement[m * n];				// Count Unique Elements
-	int uniqueCount = 0;
-	bool isUnique;
+    
 
-	for (int i = 0; i < m; ++i) {
-		for (int j = 0; j < n; ++j) {
-			isUnique = true;
-			for (int k = 0; k < uniqueCount; ++k) {
-				if (matrix[i][j] == uniqueElement[k]) {
-					isUnique = false;
-					break;
-				}
-			}
+	for (int i = 0; i < n; ++i) {
+		for (int j = i; j < n; ++j) {
 
-			if (isUnique) {
-				uniqueElement[uniqueCount++] = matrix[i][j];
-			}
+			matrix[i][j] = 0;
+
 		}
 	}
-
-	cout << uniqueCount << endl;
+	
+	
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < n; ++j) {
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
