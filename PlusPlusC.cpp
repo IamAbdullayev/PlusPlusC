@@ -8,20 +8,26 @@ int main() {
 	cin >> n;
 	
 	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Diagonal Sums
+	for (int i = 0; i < n; ++i) {			// Swap Rows and Columns
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
     
-	int sumMainDiagonal = 0;
-	int sumSecondaryDiagonal = 0;
+	int newMatrix[n][n];
 
 	for (int i = 0; i < n; ++i) {
-		sumMainDiagonal += matrix[i][i];
-		sumSecondaryDiagonal += matrix[i][(n - 1) - i];
+		for (int j = 0; j < n; ++j) {
+			newMatrix[j][i] = matrix[i][j];
+		}
 	}
 	
-	cout << sumMainDiagonal << " " << sumSecondaryDiagonal << endl;
+	for (int i = 0; i < n; ++i) {			// Swap Rows and Columns
+		for (int j = 0; j < n; ++j) {
+			cout << newMatrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
 }
 
