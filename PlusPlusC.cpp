@@ -6,31 +6,34 @@ int main() {
 
 	int m, n;
 	cin >> m >> n;
+	
 	int matrix[m][n];
-
 	for (int i = 0; i < m; ++i) {
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
-
-	int maxNum = matrix[0][0];			// Maximum Modulo Element
-	int a = 0;
-	int b = 0;
+	
+	int uniqueElement[m * n];				// Count Unique Elements
+	int uniqueCount = 0;
+	bool isUnique;
 
 	for (int i = 0; i < m; ++i) {
 		for (int j = 0; j < n; ++j) {
-			if (matrix[i][j] > maxNum && (i + j) > 0) {
-				if (matrix[i][j] % (i + j) == 0) {
-					maxNum = matrix[i][j];
-					a = i;
-					b = j;
+			isUnique = true;
+			for (int k = 0; k < uniqueCount; ++k) {
+				if (matrix[i][j] == uniqueElement[k]) {
+					isUnique = false;
+					break;
 				}
+			}
+
+			if (isUnique) {
+				uniqueElement[uniqueCount++] = matrix[i][j];
 			}
 		}
 	}
 
-	cout << "Value: " << maxNum << " " << a << " " << b << endl;
-
-	return 0;
+	cout << uniqueCount << endl;
 }
+
