@@ -8,61 +8,7 @@
 
 using namespace std;
 
-
-string convertTo(int num, const string& format = "dec") {
-
-	if(format == "hex") {
-		string hexNum;
-		if(num <= 0) return hexNum = "0";
-
-		while(num) {
-			string hexDig;
-
-			if((num % 16) == 10) hexDig = "A";
-			if((num % 16) == 11) hexDig = "B";
-			if((num % 16) == 12) hexDig = "C";
-			if((num % 16) == 13) hexDig = "D";
-			if((num % 16) == 14) hexDig = "E";
-			if((num % 16) == 15) hexDig = "F";
-
-			if ((num % 16) < 10) hexDig = to_string(num % 16);
-
-			hexNum = hexDig + hexNum;
-
-			num /= 16;
-		}
-
-		return hexNum;
-	}
-
-	if(format == "oct") {
-		string octNum;
-		if(num <= 0) return octNum = "0";
-
-		while(num > 0) {
-			string octDig = to_string(num % 8);
-			octNum = octDig + octNum;
-			
-			num /= 8;
-		}
-
-		return octNum;
-	}
-
-
-	if(format == "bin") {
-		string binNum;
-		if(num <= 0) return binNum = "0";
-
-		while(num > 0) {
-			string binDig = to_string(num % 2);
-			binNum = binDig + binNum;
-			
-			num /= 2;
-		}
-
-		return binNum;
-	}
-
-	return to_string(num);
+template <typename T> T minimum(T a, T b) {
+	T min = (a < b) ? a : b;
+	return min;
 }
