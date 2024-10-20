@@ -8,24 +8,23 @@ int main() {
 	cin >> n >> m;
 	
 	int matrix[n][m];
-	for (int i = 0; i < n; ++i) {			// Row Sum to Array
+	for (int i = 0; i < n; ++i) {			// Minimum Row Values to Array
 		for (int j = 0; j < m; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
     
-	int sumRowElementsMatrix[n];
+	int minRowElementMatrix[n];
 
 	for (int i = 0; i < n; ++i) {
-		int sum = 0;
-		for (int j = 0; j < m; ++j) {
-			sum += matrix[i][j];
+		minRowElementMatrix[i] = matrix[i][0];
+		for (int j = 1; j < m; ++j) {
+			if(minRowElementMatrix[i] > matrix[i][j]) minRowElementMatrix[i] = matrix[i][j];
 		}
-		sumRowElementsMatrix[i] = sum;
 	}
 	
 	for (int i = 0; i < n; ++i) {
-		cout << sumRowElementsMatrix[i] << " ";
+		cout << minRowElementMatrix[i] << " ";
 	}
 	cout << endl;
 }
