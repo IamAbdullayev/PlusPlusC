@@ -4,29 +4,28 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int n;
-	cin >> n;
+	int n, m;
+	cin >> n >> m;
 	
-	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Swap Rows and Columns
-		for (int j = 0; j < n; ++j) {
+	int matrix[n][m];
+	for (int i = 0; i < n; ++i) {			// Row Sum to Array
+		for (int j = 0; j < m; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
     
-	int newMatrix[n][n];
+	int sumRowElementsMatrix[n];
 
 	for (int i = 0; i < n; ++i) {
-		for (int j = 0; j < n; ++j) {
-			newMatrix[j][i] = matrix[i][j];
+		int sum = 0;
+		for (int j = 0; j < m; ++j) {
+			sum += matrix[i][j];
 		}
+		sumRowElementsMatrix[i] = sum;
 	}
 	
-	for (int i = 0; i < n; ++i) {			// Swap Rows and Columns
-		for (int j = 0; j < n; ++j) {
-			cout << newMatrix[i][j] << " ";
-		}
-		cout << endl;
+	for (int i = 0; i < n; ++i) {
+		cout << sumRowElementsMatrix[i] << " ";
 	}
 	cout << endl;
 }
