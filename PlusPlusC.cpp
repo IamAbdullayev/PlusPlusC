@@ -7,28 +7,24 @@ int main() {
 	int n;
 	cin >> n;
 
-	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Mirror Matrix along Secondary Diagonal
+	int matrix[100][100];
+	for (int i = 0; i < n; ++i) {			// Rotate Matrix in Positive Directions
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
 
-	for (int i = 0; i < n; ++i) {		
-		for (int j = 0; j < (n - 1) - i; ++j) {
-			int temp = matrix[i][j];
-			matrix[i][j] = matrix[n - j - 1][(n - i) - 1];
-			matrix[(n - j) - 1][(n - i) - 1] = temp;
-		}
-	}
+	rotate90(n, matrix);
+	cout << "90 degrees: " << endl;
+	printMatrix(n, matrix);
 
-	for (int i = 0; i < n; ++i) {	
-		for (int j = 0; j < n; ++j) {
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl;
+	rotate90(n, matrix);
+	cout << "180 degrees: " << endl;
+	printMatrix(n, matrix);
+
+	rotate90(n, matrix);
+	cout << "270 degrees: " << endl;
+	printMatrix(n, matrix);
 
 	return 0;
 }
