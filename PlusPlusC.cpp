@@ -7,30 +7,25 @@ int main() {
 	int n, m;
 	cin >> n >> m;
 	
-	int matrix[n][m];
-	for (int i = 0; i < n; ++i) {			// Column Value Differences to Array
+	double matrix[n][m];
+	for (int i = 0; i < n; ++i) {			// Average of Extreme Values
 		for (int j = 0; j < m; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
   
-	int columnsElementsDifference[m];
-	int minColumnElementMatrix;
-	int maxColumnElementMatrix;
+	double minElementMatrix = matrix[0][0];
+	double maxElementMatrix = matrix[0][0];
 
-	for (int i = 0; i < m; ++i) {
-		minColumnElementMatrix = matrix[0][i];
-		maxColumnElementMatrix = matrix[0][i];
-		for (int j = 1; j < n; ++j) {
-			if(minColumnElementMatrix > matrix[j][i]) minColumnElementMatrix = matrix[j][i];
-			if(maxColumnElementMatrix < matrix[j][i]) maxColumnElementMatrix = matrix[j][i];
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < m; ++j) {
+			if(minElementMatrix > matrix[i][j]) minElementMatrix = matrix[i][j];
+			if(maxElementMatrix < matrix[i][j]) maxElementMatrix = matrix[i][j];
 		}
-		columnsElementsDifference[i] = maxColumnElementMatrix - minColumnElementMatrix;
 	}
 	
-	for (int i = 0; i < m; ++i) {
-		cout << columnsElementsDifference[i] << " ";
-	}
-	cout << endl;
+    cout.setf(ios::fixed);
+    cout.precision(2);
+    cout <<    ((maxElementMatrix + minElementMatrix) / (double)2) << endl;
 }
 
