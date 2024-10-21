@@ -4,26 +4,24 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int n, m;
-	cin >> n >> m;
-
+	int n = 5;
+	int m = 6;
 	int matrix[n][m];
-	for (int i = 0; i < n; ++i) {			// Swap Columns in Integer Matrix
-		for (int j = 0; j < m; ++j) {
-			cin >> matrix[i][j];
+
+	int k = 1;
+
+	for (int i = 0; i < n; ++i) {			// Fill 5x6 Matrix in a Specific Pattern
+		if (i == 0 || i % 2 == 0) {
+			for (int j = 0; j < m; ++j) {
+				matrix[i][j] = k++;
+			}
+		} else {
+			for (int j = m - 1; 0 <= j; --j) {
+				matrix[i][j] = k++;
+			}
 		}
 	}
 
-	int i, j;
-	cin >> i;
-	cin >> j;
-	if (!(1 <= i && i < j && j <= m)) return 0;
-
-	for (int k = 0; k < n; ++k) {
-		int temp = matrix[k][i - 1];
-		matrix[k][i - 1] = matrix[k][j - 1];
-		matrix[k][j - 1] = temp;
-	}
 
 	for (int i = 0; i < n; ++i) {	
 		for (int j = 0; j < m; ++j) {
