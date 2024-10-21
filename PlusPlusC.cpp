@@ -8,28 +8,24 @@ int main() {
 	cin >> n;
 	
 	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Monotonic Sequences in Rows
+	for (int i = 0; i < n; ++i) {			// Columns with Symmetrical Sequences
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
   
-	int countIncreasElement;
-	int countDecreasElement;
+	bool isPalindrome;
 
 	for (int i = 0; i < n; ++i) {
-		countIncreasElement = 0;
-		countDecreasElement = 0;
-		for (int j = 0; j < (n - 1); ++j) {
-			if(matrix[i][j] < matrix[i][j+1]) {
-				countIncreasElement++;
-			}
-			if(matrix[i][j] > matrix[i][j+1]) {
-				countDecreasElement++;
+		isPalindrome = true;
+		for (int j = n; j > n/2; --j) {
+			if(matrix[j - 1][i] != matrix[n - j][i]) {
+				isPalindrome = false;
+				break;
 			}
 		}
 		
-		if (countIncreasElement == (n - 1) || countDecreasElement == (n - 1)) {
+		if (isPalindrome) {
 			cout << i + 1 << " ";
 		}
 	}
