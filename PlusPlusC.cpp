@@ -8,24 +8,24 @@ int main() {
 	cin >> n;
 	
 	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Rows with All Zeros
+	for (int i = 0; i < n; ++i) {			// Rows with Equal Elements
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
   
-	bool isAllElementNull;
+	bool isAllElementEqual;
 
 	for (int i = 0; i < n; ++i) {
-		isAllElementNull = true;
-		for (int j = 0; j < n; ++j) {
-			if(0 != matrix[i][j]) {
-				isAllElementNull = false;
+		isAllElementEqual = true;
+		for (int j = 0; j < (n - 1); ++j) {
+			if(matrix[i][j] != matrix[i][j+1]) {
+				isAllElementEqual = false;
 				break;
 			}
 		}
 		
-		if (isAllElementNull) {
+		if (isAllElementEqual) {
 			cout << i + 1 << " ";
 		}
 	}
