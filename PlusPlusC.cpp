@@ -4,33 +4,26 @@ int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int n = 5;
-	int m = 6;
-	int matrix[n][m];			// 3# Fill 5x6 Array in a Specific Pattern
+	int n;
+	cin >> n;
 
-	int k = 1;
-
-	for (int diagonals = 0; diagonals < (n + m - 1); ++diagonals) {
-		if (diagonals % 2 == 0) {
-			for (int i = 0; i <= diagonals; ++i) {
-				int j = diagonals - i;
-				if (i < n && j < m) {
-					matrix[i][j] = k++;
-				}
-			}
-		} else {
-			for (int i = 0; i <= diagonals; ++i) {
-				int j = diagonals - i;
-				if (j < n && i < m) {
-					matrix[j][i] = k++;
-				}
-			}
+	int matrix[n][n];
+	for (int i = 0; i < n; ++i) {			// Mirror Matrix Horizontally
+		for (int j = 0; j < n; ++j) {
+			cin >> matrix[i][j];
 		}
 	}
 
+	for (int i = 0; i < n/2; ++i) {		
+		for (int j = 0; j < n; ++j) {
+			int temp = matrix[i][j];
+			matrix[i][j] = matrix[(n - 1) - i][j];
+			matrix[(n - 1) - i][j] = temp;
+		}
+	}
 
 	for (int i = 0; i < n; ++i) {	
-		for (int j = 0; j < m; ++j) {
+		for (int j = 0; j < n; ++j) {
 			cout << matrix[i][j] << " ";
 		}
 		cout << endl;
