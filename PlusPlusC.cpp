@@ -8,17 +8,17 @@ int main() {
 	cin >> n;
 
 	int matrix[n][n];
-	for (int i = 0; i < n; ++i) {			// Mirror Matrix Vertically
+	for (int i = 0; i < n; ++i) {			// Mirror Matrix along Main Diagonal
 		for (int j = 0; j < n; ++j) {
 			cin >> matrix[i][j];
 		}
 	}
 
-	for (int i = 0; i < n/2; ++i) {		
-		for (int j = 0; j < n; ++j) {
+	for (int i = 0; i < n; ++i) {		
+		for (int j = i + 1; j < n; ++j) {
 			int temp = matrix[j][i];
-			matrix[j][i] = matrix[j][(n - 1) - i];
-			matrix[j][(n - 1) - i] = temp;
+			matrix[j][i] = matrix[i][j];
+			matrix[i][j] = temp;
 		}
 	}
 
