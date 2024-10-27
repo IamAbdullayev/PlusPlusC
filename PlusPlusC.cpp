@@ -1,30 +1,32 @@
-#include "functions.h"
+#include "userStruct.h"
 
 int main() {
 	// system("cls");
 	// cout << boolalpha;
 
-	int n;
-	cin >> n;
+	string country;
+	cin >> country;
 
-	int matrix[100][100];
-	for (int i = 0; i < n; ++i) {			// Rotate Matrix in Positive Directions
-		for (int j = 0; j < n; ++j) {
-			cin >> matrix[i][j];
-		}
-	}
+	// Make object
+	User admin(country);
 
-	rotate90(n, matrix);
-	cout << "90 degrees: " << endl;
-	printMatrix(n, matrix);
+	// Setters
+	admin.setUserName("Ramazan");
+	admin.setLogin("ramazanabdullayev709@gmail.com");
+	admin.setPassword("Ramo.709");
+	admin.setCountry(country);
+	admin.setPhoneNumber("(51) 521-77-87");
 
-	rotate90(n, matrix);
-	cout << "180 degrees: " << endl;
-	printMatrix(n, matrix);
+	// Getters
+	cout << admin.getUserName() << endl;
+	cout << admin.getPhoneNumber() << endl;
+	cout << admin.getCountry() << endl << endl;
 
-	rotate90(n, matrix);
-	cout << "270 degrees: " << endl;
-	printMatrix(n, matrix);
+	cout << "Private details: " << endl;
+	cout << admin.getLogin() << endl;
+	cout << admin.getPassword() << endl;
+
+
 
 	return 0;
 }
