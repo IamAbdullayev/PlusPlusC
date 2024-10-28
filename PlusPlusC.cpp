@@ -1,5 +1,6 @@
 #include "userStruct.h"
 
+
 int main() {
 	// system("cls");
 	// cout << boolalpha;
