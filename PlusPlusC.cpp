@@ -1,34 +1,29 @@
-#include "userStruct.h"
+#include "employees.h"
 
 
-int main() {
+int main()
+{
 	// system("cls");
-	// cout << boolalpha;
 
-	string country;
-	cin >> country;
+	Employee employee1(1001, "Ramazan");
+	Employee employee2;
 
-	// Make object
-	User admin(country);
+	employee1.setSalary(5050.5);
 
-	// Setters
-	admin.setUserName("Ramazan");
-	admin.setLogin("ramazanabdullayev709@gmail.com");
-	admin.setPassword("Ramo.709");
-	admin.setCountry(country);
-	admin.setPhoneNumber("(51) 521-77-87");
-
-	// Getters
-	cout << admin.getUserName() << endl;
-	cout << admin.getPhoneNumber() << endl;
-	cout << admin.getCountry() << endl << endl;
-
-	cout << "Private details: " << endl;
-	cout << admin.getLogin() << endl;
-	cout << admin.getPassword() << endl;
+	employee2.setID(1002);
+	employee2.setName("Abdullayev");
+	employee2.setDesignation("Engineer");
+	employee2.setSalary(10000.5);
 
 
+	// Displaying employee details
+	cout << "Employee 1 Details: " << endl;
+	employee1.printEmployeeDetails();
+	cout << endl;
+
+	cout << "Employee 2 Details: " << endl;
+	employee2.printEmployeeDetails();
+	cout << endl;
 
 	return 0;
 }
-
