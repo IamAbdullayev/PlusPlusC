@@ -1,29 +1,18 @@
-#include "employees.h"
+#include "bank_accounts.h"
 
 
 int main()
 {
-	// system("cls");
 
-	Employee employee1(1001, "Ramazan");
-	Employee employee2;
+	BankAccount account_1(101, "Sarah", 1250.5);
 
-	employee1.setSalary(5050.5);
+	account_1.checkBalance();
 
-	employee2.setID(1002);
-	employee2.setName("Abdullayev");
-	employee2.setDesignation("Engineer");
-	employee2.setSalary(10000.5);
+	account_1.deposit(250.5);
 
+	account_1.checkBalance();
 
-	// Displaying employee details
-	cout << "Employee 1 Details: " << endl;
-	employee1.printEmployeeDetails();
-	cout << endl;
+	account_1.withdraw(500);
 
-	cout << "Employee 2 Details: " << endl;
-	employee2.printEmployeeDetails();
-	cout << endl;
-
-	return 0;
+	account_1.checkBalance();
 }
