@@ -9,73 +9,103 @@
 #include <math.h>
 #include <sstream>
 #include <string>
+#include "bank_account.h"
 using namespace std;
 
 
 
-class BankAccount {
+class Bank {
 	private:
-		static int ID;
-		int* accountNumber = new int;
-		double balance;
+		int numAccounts;
+
+		// Dynamic array of objects
+		BankAccount* accounts1;
+
+		// Dynamic array of pointers to objects
+		BankAccount** accounts2;
 
 	public:
 		// Constructor
-		BankAccount ();
-
-		// Parameterized constructor
-		BankAccount (const double&);
+		Bank() = default;
+		Bank(int);
 
 		// Destructor
-		~BankAccount ();
+		~Bank ();
 
-		// Member function
-		void deposit(const double&);
-		void withdraw(const double&);
-		
-		// Getters
-		double getBalance() const;
+		// Member functions
+		void performTransactions();
+		void displayAllBalances() const;
 
 };
 
 
-// Static variable
-int BankAccount::ID = 1;
 
-// implementation
-BankAccount::BankAccount () {
-	*accountNumber = ID++;
-	this->balance = 0;
-	cout << "Account " << *accountNumber << " created." << endl;
-}
 
-BankAccount::BankAccount (const double& initialBalance) {
-	*accountNumber = ID++;
-	this->balance = initialBalance;
-	cout << "Account " << *accountNumber << " created." << endl;
-}
+// Implementation
+Bank::Bank(int num) {
+	this->numAccounts = num;
 
-BankAccount::~BankAccount () {
-	--ID;
-	cout << "Account " << *accountNumber << " closed.\n";
-	delete accountNumber;
-}
+	// Dynamic array of objects
+	accounts1 = new BankAccount[num];
+	for (int i = 0; i < this->numAccounts; ++i) {
+		accounts1[i] = BankAccount(i + 1);
+	}
 
-void BankAccount::deposit(const double& cashIn) {
-	if (cashIn > 0) {
-		this->balance += cashIn;
+
+	// Dynamic array of pointers to objects
+	accounts2 = new BankAccount*[num];
+	for (int i = 0; i < this->numAccounts; ++i) {
+		accounts2[i] = new BankAccount(i + 1);
 	}
 }
 
-void BankAccount::withdraw(const double& cashOut){
-	if (cashOut > 0) {
-		this-> balance -= cashOut;
+Bank::~Bank () {
+	// Dynamic array of objects
+	delete[] accounts1;
+
+
+	// Dynamic array of pointers to objects
+	for (int i = 0; i < this->numAccounts; ++i) {
+		delete accounts2[i];
+	}
+	delete[] accounts2;
+}
+	
+
+
+void Bank::performTransactions() {
+	// Dynamic array of objects
+	for (int i = 0; i < this->numAccounts; ++i) {
+		accounts1[i].deposit(500 - (i * 100));
+	}
+	cout << endl;
+
+
+	// Dynamic array of pointers to objects
+	for (int i = 0; i < this->numAccounts; ++i) {
+		// (*accounts2[i]).deposit(500 - (i * 100));
+		accounts2[i]->deposit(500 - (i * 100));
 	}
 }
 
-double BankAccount::getBalance() const {
-	return this->balance;
+
+
+void Bank::displayAllBalances() const {
+	// Dynamic array of objects
+	for (int i = 0; i < this->numAccounts; ++i) {
+		accounts1[i].displayBalance();
+	}
+	cout << endl;
+
+
+	// Dynamic array of pointers to objects
+	for (int i = 0; i < this->numAccounts; ++i) {
+		// accounts2[i]->displayBalance();
+		(*accounts2[i]).displayBalance();
+	}
 }
+
+
 
 
 
