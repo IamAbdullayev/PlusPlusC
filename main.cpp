@@ -5,38 +5,30 @@
 #include <math.h>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 using namespace std;
 
 int main() {
-	string str;
-	getline(cin, str);
+	
+	string text = "abcdef";
 
-	int len = str.length();
-	int counter = 0;
-	int start = 0;
-	int max = 0;
-	string maxWord = "";
+	unordered_map<char, int> unique_symbols;
 
-
-	for (int i = 0; i <= len; ++i) {
-		if (isblank(str[i]) || i == len) {
-			if (max < counter) {
-				start = i - counter;
-				max = counter;
-			}
-			counter = 0;
-		} else {
-			counter++;
-		}
+	for (int i = 0; i < text.size(); ++i) {
+		unique_symbols[text[i]] = i;
 	}
 
-	cout << start << endl;
-	cout << max << endl;
+	// for (int i = 0; i < text.size(); ++i) {
+	// 	cout << "Key: " << (unique_symbols.begin())->first << "; Value: " << (unique_symbols.begin())->second << endl;
+	// }
 
-	for (int i = start; i < (start + max); ++i) {
-		// cout << str[i];
-		maxWord += str[i];
+	// for (auto it = unique_symbols.begin(); it != unique_symbols.end(); ++it) {
+  //   cout << it->first << " : " << it->second << endl;
+	// }
+
+
+	for (const auto& symbol : unique_symbols) {
+		cout << "Key: " << symbol.first << "; Value: " << symbol.second << endl;
 	}
-	cout << maxWord << endl;
 
 }
