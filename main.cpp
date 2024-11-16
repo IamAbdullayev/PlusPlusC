@@ -1,34 +1,29 @@
-#include <iostream>
-#include <iomanip>
-#include <cmath>
-#include <cstring>
-#include <math.h>
-#include <sstream>
-#include <string>
-#include <unordered_map>
-using namespace std;
-
-int main() {
-	
-	string text = "abcdef";
-
-	unordered_map<char, int> unique_symbols;
-
-	for (int i = 0; i < text.size(); ++i) {
-		unique_symbols[text[i]] = i;
-	}
-
-	// for (int i = 0; i < text.size(); ++i) {
-	// 	cout << "Key: " << (unique_symbols.begin())->first << "; Value: " << (unique_symbols.begin())->second << endl;
-	// }
-
-	// for (auto it = unique_symbols.begin(); it != unique_symbols.end(); ++it) {
-  //   cout << it->first << " : " << it->second << endl;
-	// }
+#include "linked_list.h"
 
 
-	for (const auto& symbol : unique_symbols) {
-		cout << "Key: " << symbol.first << "; Value: " << symbol.second << endl;
-	}
+int main()
+{
+	  LinkedList list;
 
+    list.append(1).append(2).append(3).append(4);
+    list.display();
+
+    list.insert_index(3, 10);
+    list.display();
+		list.remove(10);
+		
+    list.insert(5).display();
+
+    bool isFound = list.search(7);
+
+    cout << std::boolalpha << endl;
+    cout << isFound;
+    cout << endl << endl;
+
+    list.remove(3).display().remove_end().display().remove_front().display();
+
+    cout << endl;
+
+
+	return 0;
 }
