@@ -12,15 +12,17 @@
 #include <vector>
 using namespace std;
 
-struct Node {
-	int data;
+
+struct Node
+{
+	double data;
 	Node* next;
+	Node* prev;
 
-	Node(int data) {
+	Node(const double& data) {
 		this->data = data;
-		this->next = nullptr;
+		this->next = this->prev = NULL;
 	}
-
 };
 
 

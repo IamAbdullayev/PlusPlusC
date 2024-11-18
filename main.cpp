@@ -3,26 +3,40 @@
 
 int main()
 {
-	  LinkedList list;
+	LinkedList list;
 
-    list.append(1).append(2).append(3).append(4);
-    list.display();
+	list.push_front(1.1);
+	list.push_back(2.2);
+	list.push_back(3.3);
+	list.push_front(4.4);
+	list.display();
 
-    list.insert_index(3, 10);
-    list.display();
-		list.remove(10);
-		
-    list.insert(5).display();
+	list.pop_front();
+	list.display();
+	
+	list.pop_back();
+	list.display();
 
-    bool isFound = list.search(7);
+	list.insert(0, 0.0);
+	list.display();
 
-    cout << std::boolalpha << endl;
-    cout << isFound;
-    cout << endl << endl;
+	list.insert(1, 0.5);
+	list.display();
 
-    list.remove(3).display().remove_end().display().remove_front().display();
+	list.insert(4, 3.3);
+	list.display();
 
-    cout << endl;
+	list.erase(2);
+	list.display();
+
+	list.erase(1);
+	list.display();
+
+	list.erase(3);
+	list.display();
+
+	cout << boolalpha;
+	cout << list.search(1.1);
 
 
 	return 0;

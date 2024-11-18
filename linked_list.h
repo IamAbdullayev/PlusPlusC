@@ -13,208 +13,149 @@
 using namespace std;
 
 
-class LinkedList {
-	Node* head;
-	Node* tail;
+class LinkedList 
+{
+	private:
+		Node* head;
+		Node* tail;
 
 	public:
 		LinkedList() {
-			this->head = nullptr;
-			this->tail = nullptr;
-		}
+			this->head = this->tail = NULL;
+		}	
 
 		~LinkedList() {
-			while (head != nullptr) remove_front();
-		}
-		
-
-		// Member functions
-		LinkedList& remove(int value) {
-			if (head == nullptr) return *this;
-			if (head == tail) {
-				if (value == head->data) delete head;
-				head = tail = nullptr;
-				return *this;
-			}
-			if (value == head->data) {
-				Node* temp = head;
-				head = head->next;
-				delete temp;
-				return *this;
-			}
-
-			Node* node = head;
-			for (; node->next->data != value; node = node->next);
-			Node* temp = node->next;
-			node->next = temp->next;
-			delete temp;
-
-
-			// Node* node = head;
-			// while (node != nullptr) {
-
-			// 	if (value == node->next->data) {
-			// 		Node* temp = node->next;
-			// 		node->next = temp->next;
-			// 		delete temp;
-			// 		return *this;
-			// 	}
-
-			// 	node = node->next;
-			// }
-
-
-			return *this;
+			while(head != NULL) pop_front();
 		}
 
-		LinkedList& remove_front() {
-			if (head == nullptr) return *this;
+		void pop_front() {
+			if (head == NULL) return;
 			if (head == tail) {
 				delete head;
-				head = tail = nullptr;
-				return *this;
+				head = tail = NULL;
+				return;
 			}
-			
-			Node* node = head;
-			head = node->next;
-			delete node;
-			return *this;
+
+			// Node* node = head;
+			// head = head->next;
+			// head->prev = NULL;
+			// delete node;
+
+			head = head->next;
+			delete head->prev;
+			head->prev = NULL;
 		}
 
-		LinkedList& remove_end() {
-			if (tail == nullptr) return *this;
+		void pop_back() {
+			if (head == NULL) return;
 			if (head == tail) {
 				delete tail;
-				head = tail = nullptr;
-				return *this;
+				head = tail = NULL;
 			}
 
-			Node* node = head;
-			for (; node->next != tail; node = node->next);
-			node->next = nullptr;
-			delete tail;
-			tail = node;
-
-			// Node* node = head;
-			// while (node != nullptr) {
-
-			// 	if (node->next == tail) {
-			// 		node->next = nullptr;
-			// 		delete tail;
-			// 		tail = node;
-			// 		return *this;
-			// 	}
-
-			// 	node = node->next;
-			// }
-
-			return *this;
+			tail = tail->prev;
+			delete tail->next;
+			tail->next = NULL;
 		}
 
+		void push_front(const double data) {
+			Node* node = new Node(data);
 
-		LinkedList& insert_index(int k, int value) {
-			if (k == 0) {
-				Node* node = new Node(value);
-				node->next = head;
-				head = node;
-				if (tail == nullptr) tail = node;
-				return *this;
+			// node->next = head;
+			// if (head != NULL) head->prev = node;
+			// head = node;
+			// if (tail == NULL) tail = node;
+
+			if (head == NULL) {
+				head = tail = node; 
+				return;
+			}
+			node->next = head;
+			head->prev = node;
+			head = node;
+		}
+
+		void push_back(const double data) {
+			Node* node = new Node(data);
+
+			// node->prev = tail;
+			// if (tail != NULL) tail->next = node;
+			// tail = node;
+			// if (head == NULL) head = node;
+
+			if (head == NULL) {
+				head = tail = node;
+				return;
 			}
 
+			node->prev = tail;
+			tail->next = node;
+			tail = node;
+		}
 
-			Node* left;
-			Node* node_index = head;
+		Node* get_at(int k) {
 			int n = 1;
-			while (k != 0 && node_index != NULL && n != k && node_index->next != nullptr) {
-				node_index = node_index->next;
-				++n;
+
+			// Node* ptr = head;
+			// while(ptr != NULL) {
+			// 	if (n == k) return ptr;
+			// 	ptr = ptr->next;
+			// 	n++;
+			// }
+
+			for (Node* ptr = head; ptr != NULL; ptr = ptr->next) {
+				if (n == k) return ptr;
+				n++;
 			}
-			left = (n == k) ? node_index : NULL;
-			if (left == NULL) return *this;
+		}
+
+		Node* operator [] (int k) {
+			return get_at(k);
+		}
+
+		void insert(int k, const double data) {
+			Node* left = get_at(k);
+			if (left == NULL) return push_front(data);
 
 			Node* right = left->next;
-			Node* node = new Node(value);
+			if (right == NULL) return push_back(data);
 
-			left->next = node;
+			Node* node = new Node(data);
 			node->next = right;
-
-			if (right == nullptr) tail = node;
-
-			return *this;
+			right->prev = node;
+			node->prev = left;
+			left->next = node;
+				
 		}
 
-		LinkedList& insert(int value) {
-			Node* node = new Node(value);
+		void erase(int k) {
+			Node* node = get_at(k);
+			if (node == NULL) return;
+			if (node->prev == NULL) return pop_front();
+			if (node->next == NULL) return pop_back();
 
-			node->next = head;
-			head = node;
-			if (tail == nullptr) tail = node;
+			Node* left = node->prev;
+			Node* right = node->next;
+			left->next = right;
+			right->prev = left;
 
-			// if (head == nullptr) {
-			// 	head = tail = node;
-			// 	return *this;
-			// }
-			// node->next = head;
-			// head = node;
-
-			return *this;
+			delete node;
 		}
 
-		LinkedList& append(int value) {
-			Node* node = new Node(value);
-
-			if (head == nullptr) head = node;
-			if (tail != nullptr) tail->next = node;
-			tail = node;
-
-			// if (head == nullptr) {
-			// 	head = tail = node;
-			// 	return *this;
-			// }
-			// tail->next = node;
-			// tail = node;
-
-			return *this;
-		}
-
-
-		LinkedList& display() {
-			// Node* node = head;
-			// for (; node->next != nullptr; node = node->next) {
-			// 	cout << node->data << " ";
-			// }
-
-			Node* node = head;
-			while(node != nullptr) {
-				cout << node->data << " ";
-				node = node->next;
+		void display() {
+			for (Node* ptr = head; ptr != NULL; ptr = ptr->next) {
+				cout << ptr->data << " ";
 			}
-
 			cout << endl;
-			return *this;
 		}
 
-
-		bool search(int value) {
-			Node* node = head;
-			for (; node->next != nullptr; node = node->next) {
-				if (value == node->data) {
-					return true;
-				}
+		bool search(const double& data) {
+			for (Node* ptr = head; ptr != NULL; ptr = ptr->next) {
+				if (ptr->data == data) return true;
 			}
-
-
-			// Node* node = head;
-			// while (node != nullptr) {
-			// 	if (value == node->data) {
-			// 		return true;
-			// 	}
-			// 	node = node->next;
-			// }
-
-
 			return false;
 		}
+
 
 };
 
