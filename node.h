@@ -17,11 +17,10 @@ struct Node
 {
 	double data;
 	Node* next;
-	Node* prev;
 
 	Node(const double& data) {
 		this->data = data;
-		this->next = this->prev = NULL;
+		this->next = NULL;
 	}
 };
 

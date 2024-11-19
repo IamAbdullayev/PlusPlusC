@@ -1,43 +1,27 @@
-#include "linked_list.h"
+#include "linked_list_stack.h"
 
 
 int main()
 {
-	LinkedList* list = new LinkedList();
+	LinkedListStack* stack = new LinkedListStack();
 
-	list->push_front(1.1);
-	list->push_back(2.2);
-	list->push_back(3.3);
-	list->push_front(4.4);
-	list->display();
+	stack->peek();
 
-	list->pop_front();
-	list->display();
-	
-	list->pop_back();
-	list->display();
+	stack->push(1)->push(2)->push(3)->push(4)->push(5);
 
-	list->insert(0, 0.0);
-	list->display();
+	cout << "Size: " << stack->size() << endl << endl;
 
-	list->insert(1, 0.5);
-	list->display();
+	stack->displayStack();
+	stack->pop();
+	stack->displayStack();
 
-	list->insert(4, 3.3);
-	list->display();
+	cout << endl;
+	stack->peek();
+	cout << endl;
 
-	list->erase(2);
-	list->display();
+	stack->pop()->pop()->pop()->pop()->pop();
 
-	list->erase(1);
-	list->display();
-
-	list->erase(3);
-	list->display();
-
-	cout << boolalpha;
-	cout << list->search(1.1);
-
+	stack->displayStack();
 
 	return 0;
 }
