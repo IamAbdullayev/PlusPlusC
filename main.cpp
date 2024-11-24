@@ -9,30 +9,27 @@ using namespace std;
 
 
 int main() {
-	int n;
-	cin >> n;
-	
-	int n_copy = n;
-	int dig;
+	int number;
+	cin >> number;
+	int digit;   
 	int max = 0;
-	int count = 0;
+	int count = 0;   
 
-	// Find the maximum number
-	while (n_copy) {    
-		dig = n_copy % 10;
-		if (dig > max) max = dig;
-		n_copy /= 10;
-	}
-
-	// Find how many times the maximum digit is repeated
-	while (n) {					
-		dig = n % 10;
-		if (dig == max) count++;
-		n /= 10;
+	// Find the maximum number and find how many times the maximum digit is repeated
+	while (number > 0) { 
+		digit = number % 10;
+		if (digit > max) {            
+			max = digit;  
+			count = 1; 
+		} else if (max == digit) { 
+			count++; 
+		}
+		number /= 10;
 	}
 
 	// Print the maximum digit
 	cout << count << endl;
+
 	return 0;
 }
  
