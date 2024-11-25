@@ -1,35 +1,24 @@
-#include <iostream>
-#include <iomanip>
-#include <cmath>
-#include <cstring>
-#include <math.h>
-#include <sstream>
-#include <string>
-using namespace std;
+#include "linked_list_queue.h"
 
 
-int main() {
-	int number;
-	cin >> number;
-	int digit;   
-	int max = 0;
-	int count = 0;   
+int main()
+{
+	LinkedListQueue queue;
+	
+	queue.enqueue(10);
+	queue.enqueue(20);
+	queue.enqueue(30);
 
-	// Find the maximum number and find how many times the maximum digit is repeated
-	while (number > 0) { 
-		digit = number % 10;
-		if (digit > max) {            
-			max = digit;  
-			count = 1; 
-		} else if (max == digit) { 
-			count++; 
-		}
-		number /= 10;
-	}
-
-	// Print the maximum digit
-	cout << count << endl;
+	cout << "Size: " << queue.size() << endl;   // Output: Size: 3
+	cout << "Front: " << queue.peek() << endl;  // Output: Front: 10
+	cout << "Dequeued: " << queue.dequeue() << endl;  // Output: Dequeued: 10
+	cout << "Is Empty? " << queue.isEmpty() << endl;  // Output: Is Empty? 0 (false)
+	cout << "Front: " << queue.peek() << endl;  // Output: Front: 20
+	cout << "Dequeued: " << queue.dequeue() << endl;  // Output: Dequeued: 20
+	cout << "Is Empty? " << queue.isEmpty() << endl;  // Output: Is Empty? 0 (false)
+	cout << "Front: " << queue.peek() << endl;  // Output: Front: 30
+	cout << "Dequeued: " << queue.dequeue() << endl;  // Output: Dequeued: 30
+	cout << "Is Empty? " << queue.isEmpty() << endl;  // Output: Is Empty? 1 (true)
 
 	return 0;
 }
- 
