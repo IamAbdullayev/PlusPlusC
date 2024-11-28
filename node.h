@@ -1,7 +1,6 @@
 #ifndef NODE_H
 #define NODE_H
 
-
 #include <iostream>
 #include <iomanip>
 #include <cmath>
@@ -15,13 +14,16 @@ using namespace std;
 
 struct Node
 {
-	int data;
-	Node* next;
+	public:
+		int data;
+		Node* left;
+		Node* rigth;
 
-	Node(const double& data) {
-		this->data = data;
-		this->next = NULL;
-	}
+	public:
+		Node(int data) {
+			this->data = data;
+			this->left = this->rigth = NULL;
+		}
 };
 
 
