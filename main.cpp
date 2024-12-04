@@ -1,13 +1,23 @@
-#include "Teacher.h"
+#include "Library.h"
 
 
-int main()
-{
-	Teacher teacher("Lola", 18, 3);
-	teacher.reviewGrades();  // Accesses grades directly for review
 
-	// grades is not directly accessible here, as it's protected
-	// cout << "Teacher's grades: " << teacher.grades << endl;
+int main() {
+
+	Library library;
+
+	Book book("***", "******", 1905, "15-45-54-54");
+	DVD dvd("***", "******", 1905, 10);
+	
+
+	library.addItem(&dvd);
+	library.addItem(&book);
+
+	library.displayAllItems();
 
 	return 0;
 }
+
+
+
+
