@@ -1,32 +1,36 @@
-#include "Manager.h"
+#include "Account.h"
 
 /*
 
-Why would you choose public inheritance for certain classes?
--- Я использовал public, потому что мне нужен был доступ из вне. 
--- То есть, чтобы я смог создаь объекты (Car, Bus, Vehicle) извне (в моем случае - в классе Manager).
+1. Explain why public inheritance is suitable for the SavingsAccount class.
+-- Я думаю что этот класс (SavingsAccount) не выполняет критическую операцию, она увеличивает баланс клиента.
 
-When is protected inheritance useful and in what scenarios should it be avoided?
--- Оно полезно, если вы не хотети чтобы к элементам вашего класса имели доступ извне.
--- Оно позволят хранить данные таким образом, чтобы к нему не имели досуп извне, но при этом передавались при наследовании.
+2. Discuss the advantages of using protected inheritance for the CheckingAccount class.
+-- Думаю этот класс (CheckingAccount) выполняет регулярную задачу, например, обслуживание карты и т.д.
+-- Поэтому извне к нему доступ запрещен, также это операция вычитания. Чтобы избежать утечки денег необхожимо инкапсуляция.
 
-How does private inheritance restrict access compared to public and protected inheritance?
--- Оно полности инкапсулирует элемент в пределах класса, в котором он создан, добален и т.д.
--- Не передается по наследству и не предоставляет доступ изве.
+3. Justify the use of private inheritance for the CreditCardAccount class.
+-- Покупка это операция, которая выполняет сам пользователь, поэтому и доступ должен быть приватным.
+-- Только сам владелец карты долже иметь доступ к её элементам.
 
 */
 
+
 int main() {
-	Manager manager;
+    /*    Example Usage    */
 
-	Car car1(1, 150, 4);
-	Bus bus1(2, 80, 40);
+    SavingsAccount savings(1001, "John Doe", 1000.0);
+    CheckingAccount checking(2001, "Jane Smith", 1500.0);
+    CreditCardAccount creditCard(3001, "Alice Johnson", 500.0);
 
+    savings.deposit(500);
+    savings.applyInterest(0.05);
+    savings.withdraw(200);
+    
+    checking.applyMonthlyFee(10);
 
-	manager.addVehicle(&car1);
-	manager.addVehicle(&bus1);
-
-	manager.displayFleet();
+    creditCard.makePurchase(200);
+    creditCard.makePurchase(400);
 
 	return 0;
 }
