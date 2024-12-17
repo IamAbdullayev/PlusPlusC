@@ -1,18 +1,26 @@
-#include "derived.h"
+#include "LibraryItem.h"
 
 
 int main()
 {
-	  Circle circle("Circle", 5.0);
-    Rectangle rectangle("Rectangle", 6.0, 4.0);
-    Triangle triangle("Triangle", 4.0, 3.0);
-    Square square("Square", 5.0);
+	Book item1("\"The Great Gatsby\"", 1925, "F. Scott Fitzgerald");
+	EBook item2("\"The Hitchhiker's Guide to the Galaxy\"", 1979, "EPUB");
+	AudioCD item3("\"Abbey Road\"", 1969, "The Beatles");
 
-    Shape* shapes[] = { &circle, &rectangle, &triangle, &square };
+	item1.checkout();
+	item2.checkin();
+	item3.checkout();
 
-    for (int i = 0; i < 4; i++) {
-        shapes[i]->draw();
-    }
+	LibraryItem* items[3] = { &item1, &item2, &item3 };
+
+	for (int i = 0; i < 3; ++i) {
+		items[i]->displayInfo();
+		cout << endl;
+	}
+
+	// item1.displayInfo();
+	// item2.displayInfo();
+	// item3.displayInfo();
 
 	return 0;
 }
