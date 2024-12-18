@@ -1,137 +1,84 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
-#include <cstring>
-#include <math.h>
-#include <sstream>
-#include <string>
-#include <string_view>
-#include <vector>
-using namespace std;
+
+using namespace std; 
 
 
-class Payment {
-    public:
-        Payment() : amount(0.0), currency("USD"), status("Pending") {}
+class Employee {
+	protected:
+		string name;
+		double baseSalary;
 
-        void setAmount(double amt) { amount = amt; }
-        void setCurrency(const string& curr) { currency = curr; }
-        void setStatus(const string& stat) { status = stat; }
+	public:
+		Employee(const string& n, double salary) : name(n), baseSalary(salary) {}
+		virtual ~Employee() {} 
 
-        double getAmount() const { return amount; }
-        string getCurrency() const { return currency; }
-        string getStatus() const { return status; }
+		virtual double calculateSalary() const {
+			return baseSalary;
+		}
 
-        virtual void authorizePayment() {}
-				virtual void verifyFunds() {}
-				virtual void executePayment() {}
+		virtual void display() const {
+			cout << "Name: " << name << endl;
+			cout << "Salary: " << baseSalary << endl;
+		}
 
-
-        virtual ~Payment() {}
-
-    private:
-        double amount;
-        string currency;
-        string status;
 };
 
 
-class CreditCardPayment : public Payment {
-    public:
-        CreditCardPayment(const string& cardType) : cardType(cardType) {}
+class Manager : public Employee {
+	private:
+		double bonus;
 
-        void authorizePayment() override {
-            cout << "Authorizing Credit Card Payment of " << getAmount() << " " << getCurrency() << " (Card Type: " << cardType << ")" << endl;
-            setStatus("Authorized");
-        }
+	public:
+		Manager() = default;
+		Manager(const string& n, double salary, double bonus) : Employee(n, salary), bonus(bonus) {}
 
-        void verifyFunds() override {
-            cout << "Verifying Funds for Credit Card Payment of " << getAmount() << " " << getCurrency() << " (Card Type: " << cardType << ")" << endl;
-            setStatus("Funds Verified");
-        }
+		double calculateSalary() const override {
+			return baseSalary + bonus;
+		}
 
-        void executePayment() override {
-            cout << "Executing Credit Card Payment of " << getAmount() << " " << getCurrency() << " (Card Type: " << cardType << ")" << endl;
-            setStatus("Executed");
-        }
-        
+		void display() const override {
+			cout << "Manager - " << name << "; salary - " << calculateSalary() << endl;
+		}
 
-    private:
-        string cardType;
 };
 
+class Developer : public Employee {
+	private:
+		int numberOfProjects;
 
-class DebitCardPayment : public Payment {
-    public:
-        DebitCardPayment(const string& cardType) : cardType(cardType) {}
+	public:
+		Developer() = default;
+		Developer(const string& n, double salary, int numberOfProjects) 
+						: Employee(n, salary), numberOfProjects(numberOfProjects) {}
 
-        void verifyFunds() override {
-            cout << "Verifying Funds for Debit Card Payment of " << getAmount() << " " << getCurrency() << " (Card Type: " << cardType << ")" << endl;
-            setStatus("Funds Verified");
-        }
+		double calculateSalary() const override {
+			return baseSalary + (numberOfProjects * 1000);
+		}
 
-        void executePayment() override {
-            cout << "Executing Debit Card Payment of " << getAmount() << " " << getCurrency() << " (Card Type: " << cardType << ")" << endl;
-            setStatus("Executed");
-        }
+		void display() const override {
+			cout << "Developer - " << name << "; salary - " << calculateSalary() << endl;
+		}
 
-        void authorizePayment() override {
-            cout << "Authorizing Debit Card Payment of " << getAmount() << " " << getCurrency() << " Card Type: " << cardType << ")" << endl;
-            setStatus("Authorized");
-        }
-        
-
-    private:
-        string cardType;
 };
 
-
-class PayPalPayment : public Payment {
-    public:
-        PayPalPayment(const string& email) : email(email) {}
-
-        void executePayment() override {
-            cout << "Executing PayPal Payment of " << getAmount() << " " << getCurrency() << " (Email: " << email << ")" << endl;
-            setStatus("Executed");
-        }
-
-        void authorizePayment() override {
-            cout << "Authorizing PayPal Payment of " << getAmount() << " " << getCurrency() << " (Email: " << email << ")" << endl;
-            setStatus("Authorized");
-        }
-
-        void verifyFunds() override {
-            cout << "Verifying Funds for PayPal Payment of " << getAmount() << " " << getCurrency() << " (Email: " << email << ")" << endl;
-            setStatus("Funds Verified");
-        }
-        
-
-    private:
-        string email;
-};
 
 
 int main() {
-    
-    system("clear");
+	const int numberOfEmployees = 4;
+	Employee* employees[numberOfEmployees];
 
-    CreditCardPayment creditCardPayment("Visa");
-    DebitCardPayment debitCardPayment("Mastercard");
-    PayPalPayment payPalPayment("example@example.com");
+	employees[0] = new Manager("Mila", 2500.5, 1499.5);
+	employees[1] = new Manager("Luna", 1500.5, 499.5);
+	employees[2] = new Developer("Alex", 7000, 3);
+	employees[3] = new Developer("Misha", 9000, 3);
 
-    creditCardPayment.setAmount(100.0);
-    debitCardPayment.setAmount(50.0);
-    payPalPayment.setAmount(200.0);
+	for (int i = 0; i < numberOfEmployees; ++i) {
+		employees[i]->display();
+	}
 
-    Payment* payments[] = { &creditCardPayment, &debitCardPayment, &payPalPayment };
+	for (int i = 0; i < numberOfEmployees; ++i) {
+			delete employees[i];
+	}
 
-    for (Payment* payment : payments) {
-			cout << endl;
-			payment->authorizePayment();
-			payment->verifyFunds();
-			payment->executePayment();
-    }
-		cout << endl;
-
-    return 0;
+	return 0;
 }
