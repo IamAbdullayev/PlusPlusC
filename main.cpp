@@ -4,42 +4,92 @@
 using namespace std;
 
 
-class BackendService {
-	public:
-		void connect() { cout << "Connected to a generic backend service.\n"; }
-		virtual void performTask() { cout << "Performing a generic task.\n"; }
+class Account {
+	protected:
+		int accountNumber;
+		double balance;
+
+  public:
+		Account(const int accountNumber, const double balance) 
+						: accountNumber(accountNumber), balance(balance) {}
+			
+		virtual ~Account() {}
+
+    virtual void deposit(double amount) {
+			if (amount > 0)
+				this->balance += amount;
+		}
+
+    virtual void withdraw(double amount) {
+			this->balance -= amount;
+		}
+
+    virtual void displayBalance() const {
+			cout << "Balance " << "(ID: " << this->accountNumber << ")" << ": " << this->balance << endl;
+		}
 };
 
-class DatabaseService : public BackendService {
-	public:
-		void connect(string_view connectionString) { cout << "Connected to a database with the given connection string: " << connectionString << endl; }
-		void performTask() override { cout << "Performing a database-specific task.\n"; }
+
+class SavingsAccount : public Account {
+	private:
+		double interestRate;
+
+  public:
+		SavingsAccount(const int accNum, const double balance, const double interestRate) 
+																: Account(accNum, balance), interestRate(interestRate) {}
+										
+	void displayBalance() const override {
+		Account::displayBalance();
+		cout << "Interest Rate: " << interestRate << endl << endl;
+	}
+
+	void withdraw(double amount) override {
+		if (amount > this->balance) 
+			cout << "Error: the withdrawal amount exceeds the balance.\n";
+		else if (amount < 0)
+			cout << "Error: the withdrawal amount must be greater than 0.\n";
+		else
+			this->balance -= amount;
+	}     
 };
 
-class APIService : public BackendService {
-	public:
-		void connect(string_view apiKey) { cout << "Connected to an API with the given API key: " << apiKey << endl; }
-		void performTask() override { cout << "Performing an API-specific task.\n"; }
-		void connect() { cout << "Connected to an API without an API key.\n"; }
+
+class CheckingAccount : public Account {
+  public:
+		CheckingAccount(const int accNum, const double balance) : Account(accNum, balance) {}
+										
+	void displayBalance() const override {
+		Account::displayBalance();
+		cout << "It's a checking account\n" << endl;
+	}
+
+	void withdraw(double amount) override {
+		if (amount > this->balance) 
+			cout << "Error: the withdrawal amount exceeds the balance.\n";
+		else if (amount < 0)
+			cout << "Error: the withdrawal amount must be greater than 0.\n";
+		else
+			this->balance -= amount;
+	}     
 };
 
 
 
 int main() {
-    BackendService genericService;
-    DatabaseService database;
-    APIService api;
+	Account* saveAcc = new SavingsAccount(1001, 1000.0, 3.0); // Account Number, Initial Balance, Interest Rate
+	Account* checkAcc = new CheckingAccount(2001, 2000.0); // Account Number, Initial Balance
 
-    genericService.connect(); // Calls the base class method
-    genericService.performTask(); // Calls the base class method
+	saveAcc->deposit(500);
+	checkAcc->deposit(500);
 
-    database.connect("db_connection_string"); // Calls the derived class method (overloaded)
-    database.performTask(); // Calls the derived class method (overridden)
+	saveAcc->withdraw(1000);
+	checkAcc->withdraw(1000);
 
-    api.connect("api_key"); // Calls the derived class method (overloaded with a parameter)
-    api.performTask(); // Calls the derived class method (overridden)
+	saveAcc->displayBalance();
+	checkAcc->displayBalance();
 
-    // Method hiding example
-    api.connect(); // Calls the derived class method (hiding the base class method)
+	delete saveAcc;
+	delete checkAcc;
 
+  return 0;
 }
