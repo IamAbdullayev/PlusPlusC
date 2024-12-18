@@ -1,84 +1,45 @@
 #include <iostream>
+#include <string>
 
-using namespace std; 
+using namespace std;
 
 
-class Employee {
-	protected:
-		string name;
-		double baseSalary;
-
+class BackendService {
 	public:
-		Employee(const string& n, double salary) : name(n), baseSalary(salary) {}
-		virtual ~Employee() {} 
-
-		virtual double calculateSalary() const {
-			return baseSalary;
-		}
-
-		virtual void display() const {
-			cout << "Name: " << name << endl;
-			cout << "Salary: " << baseSalary << endl;
-		}
-
+		void connect() { cout << "Connected to a generic backend service.\n"; }
+		virtual void performTask() { cout << "Performing a generic task.\n"; }
 };
 
-
-class Manager : public Employee {
-	private:
-		double bonus;
-
+class DatabaseService : public BackendService {
 	public:
-		Manager() = default;
-		Manager(const string& n, double salary, double bonus) : Employee(n, salary), bonus(bonus) {}
-
-		double calculateSalary() const override {
-			return baseSalary + bonus;
-		}
-
-		void display() const override {
-			cout << "Manager - " << name << "; salary - " << calculateSalary() << endl;
-		}
-
+		void connect(string_view connectionString) { cout << "Connected to a database with the given connection string: " << connectionString << endl; }
+		void performTask() override { cout << "Performing a database-specific task.\n"; }
 };
 
-class Developer : public Employee {
-	private:
-		int numberOfProjects;
-
+class APIService : public BackendService {
 	public:
-		Developer() = default;
-		Developer(const string& n, double salary, int numberOfProjects) 
-						: Employee(n, salary), numberOfProjects(numberOfProjects) {}
-
-		double calculateSalary() const override {
-			return baseSalary + (numberOfProjects * 1000);
-		}
-
-		void display() const override {
-			cout << "Developer - " << name << "; salary - " << calculateSalary() << endl;
-		}
-
+		void connect(string_view apiKey) { cout << "Connected to an API with the given API key: " << apiKey << endl; }
+		void performTask() override { cout << "Performing an API-specific task.\n"; }
+		void connect() { cout << "Connected to an API without an API key.\n"; }
 };
 
 
 
 int main() {
-	const int numberOfEmployees = 4;
-	Employee* employees[numberOfEmployees];
+    BackendService genericService;
+    DatabaseService database;
+    APIService api;
 
-	employees[0] = new Manager("Mila", 2500.5, 1499.5);
-	employees[1] = new Manager("Luna", 1500.5, 499.5);
-	employees[2] = new Developer("Alex", 7000, 3);
-	employees[3] = new Developer("Misha", 9000, 3);
+    genericService.connect(); // Calls the base class method
+    genericService.performTask(); // Calls the base class method
 
-	for (int i = 0; i < numberOfEmployees; ++i) {
-		employees[i]->display();
-	}
+    database.connect("db_connection_string"); // Calls the derived class method (overloaded)
+    database.performTask(); // Calls the derived class method (overridden)
 
-	for (int i = 0; i < numberOfEmployees; ++i) {
-			delete employees[i];
-	}
+    api.connect("api_key"); // Calls the derived class method (overloaded with a parameter)
+    api.performTask(); // Calls the derived class method (overridden)
 
-	return 0;
+    // Method hiding example
+    api.connect(); // Calls the derived class method (hiding the base class method)
+
 }
